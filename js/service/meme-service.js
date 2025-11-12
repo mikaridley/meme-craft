@@ -8,9 +8,9 @@ console.log('gMeme:', gMeme)
 var gKeywordSearchCountMap = { funny: 12, cat: 16, baby: 2 }
 
 //create things
-function _createMeme(name) {
+function _createMeme(id) {
   return {
-    selectedImgId: gImgs[name - 1].id,
+    selectedImgId: id,
     selectedLineIdx: 0,
     lines: [
       {
@@ -22,23 +22,30 @@ function _createMeme(name) {
   }
 }
 
-function _createImg(name, keyWords) {
+function _createImg(url, keyWords) {
   return {
     id: generateRandomID(),
-    url: `img/${name}.jpg`,
+    // url: `img/${name}.jpg`,
+    url,
     keywords: ['funny', 'cat'],
   }
 }
 
 function _createImgs() {
   for (var i = 1; i <= 18; i++) {
-    gImgs.push(_createImg(i))
+    var url = `img/${i}.jpg`
+    gImgs.push(_createImg(url))
   }
 }
 
 //set things
 function setLineText(value, line) {
   gMeme.lines[0].txt = value
+}
+
+function setMeme(id) {
+  console.log('id:', id)
+  gMeme = _createMeme(id)
 }
 
 //get things

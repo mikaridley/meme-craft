@@ -7,15 +7,19 @@
     <title>Meme-Craft</title>
   </head>
   <body onload="onInit()" onresize="renderMeme()">
-    <header class="main-header">
+    <header class="main-header flex align-center space-between">
       <h1 class="logo">Meme-Craft</h1>
-      <nav class="main-nav"></nav>
+      <nav class="main-nav">
+        <ul>
+          <li onclick="onRenderGallery()" class="clean-list">Gallery</li>
+          <li class="clean-list">About</li>
+        </ul>
+      </nav>
     </header>
 
     <main class="main-layout flex align-center center">
       <section class="gallery"></section>
-
-      <section class="editor flex">
+      <section class="editor flex hidden">
         <canvas width="" height=""> </canvas>
         <section class="canvas-settings">
           <label for="text">Insert Text</label>
@@ -26,7 +30,8 @@
 
     <script src="js/service/storage-service.js"></script>
     <script src="js/service/util-service.js"></script>
-    <script src="js/service/meme-editor-service.js"></script>
-    <script src="js/meme-editor-controller.js"></script>
+    <script src="js/service/meme-service.js"></script>
+    <script src="js/gallery-controller.js"></script>
+    <script src="js/editor-controller.js"></script>
   </body>
 </html>

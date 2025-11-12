@@ -11,7 +11,9 @@
 @import url('components/main-layout.css');
 @import url('components/main-header.css');
 @import url('components/editor.css');
+@import url('components/gallery.css');
 @import url('components/canvas-settings.css');
+@import url('components/hidden.css');
 
 /* MQ */
 @import url('setup/mq.css');

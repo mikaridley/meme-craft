@@ -3,6 +3,13 @@ var gElCanvas
 var gCtx
 
 function onInit() {
+  renderGallery()
+}
+
+function onRenderEditor(id) {
+  document.querySelector('.editor').classList.remove('hidden')
+  document.querySelector('.gallery').classList.add('hidden')
+  setMeme(id)
   renderMeme()
 }
 
