@@ -12,18 +12,21 @@
       <nav class="main-nav"></nav>
     </header>
 
-    <main class="main-layout">
+    <main class="main-layout flex align-center center">
       <section class="gallery"></section>
-      <section class="editor">
-        <div class="canvas-container">
-          <canvas width="" height=""> </canvas>
-        </div>
+
+      <section class="editor flex">
+        <canvas width="" height=""> </canvas>
+        <section class="canvas-settings">
+          <label for="text">Insert Text</label>
+          <input oninput="onSetLineTxt(this.value)" id="text" type="text" />
+        </section>
       </section>
     </main>
 
     <script src="js/service/storage-service.js"></script>
     <script src="js/service/util-service.js"></script>
-    <script src="js/service/meme-service.js"></script>
-    <script src="js/meme-controller.js"></script>
+    <script src="js/service/meme-editor-service.js"></script>
+    <script src="js/meme-editor-controller.js"></script>
   </body>
 </html>

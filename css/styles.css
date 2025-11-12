@@ -8,8 +8,10 @@
 @import url('basics/helpers.css');
 
 /* COMPONENTS */
+@import url('components/main-layout.css');
 @import url('components/main-header.css');
 @import url('components/editor.css');
+@import url('components/canvas-settings.css');
 
 /* MQ */
 @import url('setup/mq.css');
