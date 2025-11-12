@@ -148,6 +148,16 @@ function onSetRightText() {
   renderMeme()
 }
 
+function onMoveTextUp() {
+  moveTextUp()
+  renderMeme()
+}
+
+function onMoveTextDown() {
+  moveTextDown()
+  renderMeme()
+}
+
 function onImgReady() {
   renderMeme(true)
 }

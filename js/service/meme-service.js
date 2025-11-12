@@ -102,6 +102,11 @@ function setRightText() {
   gMeme.lines[lineIdx].align = 'right'
 }
 
+function moveTextUp() {
+  const lineIdx = gMeme.selectedLineIdx
+  gMeme.lines[lineIdx].pos.x += 5
+}
+
 //get things
 function getMeme() {
   return gMeme
