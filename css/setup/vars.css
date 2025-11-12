@@ -1,0 +1,13 @@
+:root {
+  /* palette */
+  --clr-primary--1: #ffffff;
+  --clr-primary-base: #f8f8f8;
+  --clr-primary-1: #292929;
+  --clr-primary-2: #1e1e1e;
+
+  --clr-txt--1: #c1c1c1;
+  --clr-txt-base: #a0a0a0;
+  --clr-txt-1: #4f4e4e;
+
+  --clr-hover: #50b035;
+}
