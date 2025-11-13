@@ -42,6 +42,10 @@ function _createImgs() {
   }
 }
 
+function createUploadedImg(img) {
+  gImgs.push(_createImg(img))
+}
+
 function _createLine() {
   gMeme.lines.push({
     txt: 'Insert Text',
@@ -66,7 +70,7 @@ function setPositionToLine(idx, x, y, textWidth, textHeight) {
 }
 
 function setMeme(id, url, state) {
-  if (state === 'create') gMeme = _createMeme(id, url)
+  if (state === 'create' || 'upload') gMeme = _createMeme(id, url)
   else if (state === 'edit') {
     gMeme = _editMeme(id, url)
   }
