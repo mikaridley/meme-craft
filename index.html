@@ -20,102 +20,128 @@
       </nav>
     </header>
 
-    <main class="main-layout flex align-center center">
+    <main class="main-layout">
       <section class="gallery"></section>
 
-      <section class="editor flex hidden">
+      <section class="editor hidden">
         <dialog class="modal-meme-saved"></dialog>
         <canvas onclick="onCanvaClick(event)"></canvas>
         <section class="canvas-settings">
           <sections class="text-input-container">
-            <label for="text">Insert Text</label>
-            <input oninput="onSetLineTxt(this.value)" id="text" type="text" />
+            <h2 class="setting-header">Crafting</h2>
+            <input
+              class="text-input"
+              oninput="onSetLineTxt(this.value)"
+              type="text"
+            />
           </sections>
 
           <section class="icons-container">
-            <label for="color">
-              <img class="icon" src="icons/paint-text-icon.png" alt="Icon"
-            /></label>
-            <input
-              oninput="onChangeColor(this.value)"
-              class="opacity0"
-              id="color"
-              type="color"
-            />
+            <div class="icon-cell">
+              <img
+                class="icon"
+                onclick="onDecreaseFont()"
+                src="icons/Smaller.png"
+                alt="Icon"
+              />
+            </div>
 
-            <img
-              class="icon"
-              onclick="onDecreaseFont()"
-              src="icons/decrease-font-icon.png"
-              alt="Icon"
-            />
+            <div class="icon-cell">
+              <img
+                class="icon"
+                onclick="onIncreaseFont()"
+                src="icons/Larger.png"
+                alt="Icon"
+              />
+            </div>
 
-            <img
-              class="icon"
-              onclick="onIncreaseFont()"
-              src="icons/increase-font-icon.png"
-              alt="Icon"
-            />
+            <div class="icon-cell">
+              <img
+                class="icon"
+                onclick="onAddLine()"
+                src="icons/Add.png"
+                alt="Icon"
+              />
+            </div>
 
-            <img
-              class="icon"
-              onclick="onAddLine()"
-              src="icons/add-line-icon.png"
-              alt="Icon"
-            />
+            <div class="icon-cell">
+              <label for="color">
+                <img class="icon" src="icons/Paint.png" alt="Icon"
+              /></label>
+              <input
+                oninput="onChangeColor(this.value)"
+                class="opacity0"
+                id="color"
+                type="color"
+              />
+            </div>
 
-            <img
-              class="icon"
-              onclick="onSwitchLine()"
-              src="icons/switch-line-icon.png"
-              alt="Icon"
-            />
+            <div class="icon-cell">
+              <img
+                class="icon"
+                onclick="onSetLeftText()"
+                src="icons/Align Left.png"
+                alt="Icon"
+              />
+            </div>
 
-            <img
-              class="icon"
-              onclick="onSetLeftText()"
-              src="icons/left-text.icon.png"
-              alt="Icon"
-            />
+            <div class="icon-cell">
+              <img
+                class="icon"
+                onclick="onSetCenterText()"
+                src="icons/Align Centre.png"
+                alt="Icon"
+              />
+            </div>
 
-            <img
-              class="icon"
-              onclick="onSetCenterText()"
-              src="icons/center-text-icon.png"
-              alt="Icon"
-            />
+            <div class="icon-cell">
+              <img
+                class="icon"
+                onclick="onSetRightText()"
+                src="icons/Align Right.png"
+                alt="Icon"
+              />
+            </div>
 
-            <img
-              class="icon"
-              onclick="onSetRightText()"
-              src="icons/right-text-icon.png"
-              alt="Icon"
-            />
+            <div class="icon-cell">
+              <img
+                class="icon"
+                onclick="onSwitchLine()"
+                src="icons/Select Next.png"
+                alt="Icon"
+              />
+            </div>
 
-            <img
-              class="icon"
-              onclick="onMoveTextUp()"
-              src="icons/arrow-up-icon.png"
-              alt="Icon"
-            />
+            <div class="icon-cell">
+              <img
+                class="icon"
+                onclick="onMoveTextUp()"
+                src="icons/Move Up.png"
+                alt="Icon"
+              />
+            </div>
 
-            <img
-              class="icon"
-              onclick="onMoveTextDown()"
-              src="icons/arrow-down-icon.png"
-              alt="Icon"
-            />
+            <div class="icon-cell">
+              <img
+                class="icon"
+                onclick="onMoveTextDown()"
+                src="icons/Move Down.png"
+                alt="Icon"
+              />
+            </div>
 
-            <img
-              class="icon"
-              onclick="onDeleteLine()"
-              src="icons/trash-icon.png"
-              alt="Icon"
-            />
+            <div class="icon-cell">
+              <img
+                class="icon"
+                onclick="onDeleteLine()"
+                src="icons/Delete.png"
+                alt="Icon"
+              />
+            </div>
           </section>
         </section>
 
-        <section class="btn-container">
+        <section class="save-btns-container">
           <a href="#" class="btn done-btn" onclick="onImgReady()">Done!</a>
 
           <a
@@ -129,7 +155,29 @@
           <a href="#" class="btn save-btn" onclick="onSaveMeme()">Save</a>
         </section>
       </section>
+
       <section class="saved-memes gallery hidden"></section>
+
+      <section class="about hidden">
+        <p>
+          Meme-Craft lets you create fun, downloadable memes with your own
+          images. Add text, choose colors, and position captions exactly how you
+          like. It’s simple, playful, and perfect for anyone who wants to make
+          memes and have them ready to save.
+        </p>
+        <h2>Our Mission</h2>
+        <p>
+          Our mission is to make meme creation accessible, fun, and fast for
+          everyone. We want to help people express their humor, creativity, and
+          ideas through memes in a simple and enjoyable way.
+        </p>
+        <h2>Contact</h2>
+        <p>
+          Have questions, feedback, or ideas? Reach out to us at contact
+          <a href="mailto:mika.ridley26@gmail.com">mika.ridley26@gmail.com</a> -
+          we’d love to hear from you!
+        </p>
+      </section>
     </main>
 
     <section class="about hidden">

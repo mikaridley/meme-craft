@@ -14,11 +14,11 @@
 @import url('components/editor.css');
 @import url('components/gallery.css');
 @import url('components/canvas-settings.css');
-@import url('components/icons-container.css');
-@import url('components/btn-container.css');
+@import url('components/save-btns-container.css');
 @import url('components/icons.css');
 @import url('components/btns.css');
 @import url('components/modal-meme-saved.css');
+@import url('components/about.css');
 @import url('components/hidden.css');
 
 /* MQ */

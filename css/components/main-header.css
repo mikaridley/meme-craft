@@ -1,4 +1,6 @@
 .main-header {
   padding-inline: 2rem;
-  margin-bottom: 6rem;
+  padding-block-end: 5rem;
+
+  background-image: url('/icons/Background Grass.png');
 }

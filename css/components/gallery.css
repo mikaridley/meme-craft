@@ -14,3 +14,10 @@
     width: 100%;
   }
 }
+
+.gallery-img {
+  border-top: 0.3rem solid var(--clr-border-dark);
+  border-left: 0.3rem solid var(--clr-border-dark);
+  border-bottom: 0.3rem solid var(--clr-border-light);
+  border-right: 0.3rem solid var(--clr-border-light);
+}

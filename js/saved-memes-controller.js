@@ -16,7 +16,7 @@ function renderSavedMemes() {
 
   savedMemes = savedMemes.map(meme => {
     return ` <div class="saved-meme-container relative">
-    <img onclick="onRenderEditor('${meme.selectedImgId}','${meme.url}','edit')" src="${meme.data}" alt="Meme" />
+    <img class="gallery-img" onclick="onRenderEditor('${meme.selectedImgId}','${meme.url}','edit')" src="${meme.data}" alt="Meme" />
     <button onclick="onRemoveMeme('${meme.selectedImgId}')" class="btn close-btn" >X</button>
     </div>`
   })

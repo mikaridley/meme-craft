@@ -1,14 +1,29 @@
 .canvas-settings {
   width: 100%;
-  padding-left: 2rem;
 
   font-size: 1.5rem;
   text-align: center;
 
   display: grid;
-  align-items: center;
+  gap: 0.5rem;
 
   > :first-child {
     grid-column: 1/-1;
   }
+}
+
+.text-input {
+  font-size: 1.5rem;
+  padding: 0.7rem;
+  width: 100%;
+  background-color: var(--clr-primary-dark);
+  border: none;
+  cursor: pointer;
+}
+
+.setting-header {
+  margin: 0;
+  margin-bottom: 0.5em;
+  font-size: 2rem;
+  text-transform: uppercase;
 }

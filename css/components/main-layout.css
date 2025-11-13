@@ -1,4 +1,6 @@
 .main-layout {
-  /* background-color: blueviolet; */
-  margin: 3rem;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem;
 }

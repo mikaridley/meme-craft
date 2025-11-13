@@ -1,7 +1,51 @@
 .icons-container {
-  background-color: var(--clr-border-dark);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr) 0.6fr;
+  grid-template-rows: repeat(3, 1fr) 0.6fr;
+  gap: 0.5rem;
+  width: 100%;
+  max-width: 400px;
+  /* margin-inline: auto; */
+
+  > :nth-child(4) {
+    grid-column: 4;
+    grid-row: span 3;
+  }
+
+  :nth-child(11) {
+    grid-column: 1;
+    grid-column: span 3;
+  }
 }
 
 .icon {
-  width: 3rem;
+  width: auto;
+  max-width: 50px;
+}
+
+.icon-cell {
+  background-color: var(--clr-primary-dark);
+
+  padding: 0.5rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* gap: 1rem;
+  column-gap: 1rem; */
+
+  border-top: 0.3rem solid var(--clr-border-dark);
+  border-left: 0.3rem solid var(--clr-border-dark);
+  border-bottom: 0.3rem solid var(--clr-border-light);
+  border-right: 0.3rem solid var(--clr-border-light);
+
+  &:nth-child(4) {
+    display: grid;
+    grid-template-rows: 1fr 0;
+  }
+
+  &:hover {
+    background-color: var(--clr-hover);
+    cursor: pointer;
+  }
 }

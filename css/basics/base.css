@@ -10,8 +10,8 @@ html {
 }
 
 body {
+  margin: 0;
   background-image: url('/icons/Background Dirt.png');
-  background-size: fill;
 }
 
 img {
@@ -40,4 +40,10 @@ canvas {
   border-left: 0.3rem solid var(--clr-border-dark);
   border-bottom: 0.3rem solid var(--clr-border-light);
   border-right: 0.3rem solid var(--clr-border-light);
+}
+
+a {
+  text-decoration: none;
+  color: var(--clr-txt-base);
+  font-size: 1.5rem;
 }

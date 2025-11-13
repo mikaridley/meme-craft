@@ -1,0 +1,12 @@
+.about {
+  background-color: var(--clr-primary-light);
+
+  width: 80vw;
+  margin-inline: auto;
+  border-radius: 1.5rem;
+  padding: 2rem;
+  margin-bottom: 3rem;
+
+  display: grid;
+  box-sizing: content-box;
+}
