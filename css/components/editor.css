@@ -1,8 +1,10 @@
 .editor {
   width: 80vw;
   max-height: 80vh;
+  padding: 3rem;
+  border-radius: 1.5rem;
 
   gap: 2rem;
 
-  background-color: rgb(244, 225, 203);
+  background-color: var(--clr-primary-light);
 }

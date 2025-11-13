@@ -6,6 +6,12 @@ html {
   font-family: lato-regular, sans-serif;
   font-size: 16px;
   font-family: 'inter', sarif;
+  color: var(--clr-txt-base);
+}
+
+body {
+  background-image: url('/icons/Background Dirt.png');
+  background-size: fill;
 }
 
 img {
@@ -27,4 +33,11 @@ p {
 h2 {
   text-align: center;
   font-size: 2.5rem;
+}
+
+canvas {
+  border-top: 0.3rem solid var(--clr-border-dark);
+  border-left: 0.3rem solid var(--clr-border-dark);
+  border-bottom: 0.3rem solid var(--clr-border-light);
+  border-right: 0.3rem solid var(--clr-border-light);
 }

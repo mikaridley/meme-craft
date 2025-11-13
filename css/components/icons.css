@@ -1,5 +1,5 @@
 .icons-container {
-  background-color: rgb(76, 173, 140);
+  background-color: var(--clr-border-dark);
 }
 
 .icon {

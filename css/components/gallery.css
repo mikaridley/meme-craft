@@ -1,5 +1,9 @@
 .gallery {
+  background-color: var(--clr-primary-light);
+
   width: 80vw;
+  padding: 3rem;
+  border-radius: 1.5rem;
 
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));

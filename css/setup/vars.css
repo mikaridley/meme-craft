@@ -1,13 +1,12 @@
 :root {
   /* palette */
-  --clr-primary--1: #ffffff;
-  --clr-primary-base: #f8f8f8;
-  --clr-primary-1: #292929;
-  --clr-primary-2: #1e1e1e;
+  --clr-primary-light: #d9d9d9;
+  --clr-primary-dark: #bababa;
 
-  --clr-txt--1: #c1c1c1;
-  --clr-txt-base: #a0a0a0;
-  --clr-txt-1: #4f4e4e;
+  --clr-txt-base: #4c4c4c;
 
-  --clr-hover: #50b035;
+  --clr-border-light: #ededed;
+  --clr-border-dark: #898989;
+
+  --clr-hover: #cfcfcf;
 }
