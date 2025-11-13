@@ -2,6 +2,30 @@
   .editor {
     width: 90vw;
   }
+
+  .main-nav {
+    display: none;
+  }
+
+  .btn-toggle-menu {
+    display: block;
+  }
+  .mobile-nav {
+    display: flex;
+    position: absolute;
+    top: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    > ul {
+      font-size: 1.2rem;
+
+      > li {
+        padding: 0.8rem;
+        width: 10rem;
+      }
+    }
+  }
 }
 
 /* mobile only */
@@ -37,11 +61,4 @@
   h2 {
     font-size: 1.7rem;
   }
-}
-
-/* Medium BP */
-
-/* Large BP */
-
-@media (min-width: 1100px) {
 }

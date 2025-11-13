@@ -26,5 +26,5 @@ function renderGallery() {
 }
 
 function toggleMenu() {
-  document.body.classList.toggle('menu-open')
+  document.querySelector('.main-nav').classList.toggle('mobile-nav')
 }

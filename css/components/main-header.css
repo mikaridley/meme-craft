@@ -13,3 +13,9 @@
     color: rgb(84, 84, 84);
   }
 }
+
+.btn-toggle-menu {
+  width: 4rem;
+  height: 4rem;
+  font-size: 2rem;
+}
