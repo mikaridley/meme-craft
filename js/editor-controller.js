@@ -9,6 +9,7 @@ function onInit() {
 //render things
 
 function renderMeme(isForDownload = false) {
+  if (document.querySelector('.editor').classList.contains('hidden')) return
   const meme = getMeme()
   const img = getImgById(meme.selectedImgId)
 
@@ -33,6 +34,7 @@ function renderCanvas(ratio) {
 }
 
 function drawText(memeline, idx, position, isForDownload) {
+  if (!memeline) return
   const selectedId = getMeme().selectedLineIdx
   gCtx.font = `${memeline.size}px Impact`
   gCtx.textAlign = 'center'
@@ -43,17 +45,19 @@ function drawText(memeline, idx, position, isForDownload) {
   gCtx.strokeStyle = 'black'
   gCtx.fillStyle = memeline.color
 
-  //set the align text
+  //set the align text the x
   if (memeline.align === 'left')
     var x = gElCanvas.width / 2 - gElCanvas.width * 0.2
   else if (memeline.align === 'right')
     var x = gElCanvas.width / 2 + gElCanvas.width * 0.2
   else var x = gElCanvas.width / 2
 
-  //set the position
-  if (position === 'top') var y = gElCanvas.height * 0.1
-  else if (position === 'bottom') var y = gElCanvas.height * 0.8
-  else if ('middle') var y = gElCanvas.height / 2
+  //set the position - the y
+  if (!memeline.isChangedManuly) {
+    if (position === 'top') var y = gElCanvas.height * 0.1
+    else if (position === 'bottom') var y = gElCanvas.height * 0.8
+    else if ('middle') var y = gElCanvas.height / 2
+  } else var y = memeline.pos.y
 
   const textMetrics = gCtx.measureText(memeline.txt)
   const textWidth = textMetrics.width
@@ -67,7 +71,7 @@ function drawText(memeline, idx, position, isForDownload) {
   if (idx === selectedId && !isForDownload) drawFrame(memeline, x, y)
 }
 
-function drawFrame(memeline, x, y, state) {
+function drawFrame(memeline, x, y) {
   const textMetrics = gCtx.measureText(memeline.txt)
   const textWidth = textMetrics.width
   const textHeight = memeline.size // approximate height
@@ -84,9 +88,11 @@ function drawFrame(memeline, x, y, state) {
 }
 
 function renderAllTextLines(isForDownload) {
-  var memeLines = getMeme().lines
-  drawText(memeLines[0], 0, 'top', isForDownload)
-  if (memeLines[1]) drawText(memeLines[1], 1, 'bottom', isForDownload)
+  var meme = getMeme()
+
+  drawText(meme.lines[0], 0, 'top', isForDownload)
+  if (meme.lines[1]) drawText(meme.lines[1], 1, 'bottom', isForDownload)
+
   // if (memeLines[2]) {
   //   memeLines.splice(0, 2)
   //   memeLines.forEach(line => {
@@ -99,6 +105,7 @@ function renderAllTextLines(isForDownload) {
 function onRenderEditor(id) {
   document.querySelector('.editor').classList.remove('hidden')
   document.querySelector('.gallery').classList.add('hidden')
+  document.querySelector('.saved-memes').classList.add('hidden')
   setMeme(id)
   renderMeme()
 }
@@ -158,13 +165,27 @@ function onMoveTextDown() {
   renderMeme()
 }
 
+function onMoveTextDown() {
+  moveTextDown()
+  renderMeme()
+}
+
+function onDeleteLine() {
+  deleteLine()
+  renderMeme()
+}
+
 function onImgReady() {
   renderMeme(true)
+  document.querySelector('.done-btn').classList.add('hidden')
+  document.querySelector('.download-btn').classList.remove('hidden')
 }
 
 function onDownloadImg(elLink) {
   const imgContent = gElCanvas.toDataURL('image/jpeg')
   elLink.href = imgContent
+  document.querySelector('.done-btn').classList.remove('hidden')
+  document.querySelector('.download-btn').classList.add('hidden')
 }
 
 function onCanvaClick(ev) {
@@ -180,4 +201,9 @@ function onCanvaClick(ev) {
   })
   switchLine(line)
   renderMeme()
+}
+
+function onSaveMeme() {
+  const dataURL = gElCanvas.toDataURL()
+  saveMeme(dataURL)
 }

@@ -1,6 +1,5 @@
 .gallery {
   width: 80vw;
-  margin: 2em;
 
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));

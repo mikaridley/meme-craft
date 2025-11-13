@@ -3,6 +3,7 @@
 function onRenderGallery() {
   document.querySelector('.gallery').classList.remove('hidden')
   document.querySelector('.editor').classList.add('hidden')
+  document.querySelector('.saved-memes').classList.add('hidden')
   renderGallery()
 }
 

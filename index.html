@@ -10,8 +10,9 @@
     <header class="main-header flex align-center space-between">
       <h1 class="logo">Meme-Craft</h1>
       <nav class="main-nav">
-        <ul>
+        <ul class="nav-list flex">
           <li onclick="onRenderGallery()" class="clean-list">Gallery</li>
+          <li onclick="onRenderSavedMemes()" class="clean-list">Saved Memes</li>
           <li class="clean-list">About</li>
         </ul>
       </nav>
@@ -19,6 +20,7 @@
 
     <main class="main-layout flex align-center center">
       <section class="gallery"></section>
+
       <section class="editor flex hidden">
         <canvas onclick="onCanvaClick(event)"></canvas>
         <section class="canvas-settings">
@@ -100,20 +102,32 @@
               src="icons/arrow-down-icon.png"
               alt="Icon"
             />
+
+            <img
+              class="icon"
+              onclick="onDeleteLine()"
+              src="icons/trash-icon.png"
+              alt="Icon"
+            />
           </section>
 
           <section class="btn-container">
-            <button onclick="onImgReady()">Ready</button>
+            <a href="#" class="btn done-btn" onclick="onImgReady()">Done!</a>
+
             <a
               href="#"
-              class="btn"
+              class="btn download-btn hidden"
               onclick="onDownloadImg(this,event)"
               download="my-meme.jpg"
               >Download</a
             >
+
+            <a href="#" class="btn save-btn" onclick="onSaveMeme()">Save</a>
           </section>
         </section>
       </section>
+
+      <dection class="saved-memes gallery hidden"></dection>
     </main>
 
     <script src="js/service/storage-service.js"></script>
@@ -121,5 +135,6 @@
     <script src="js/service/meme-service.js"></script>
     <script src="js/gallery-controller.js"></script>
     <script src="js/editor-controller.js"></script>
+    <script src="js/saved-memes-controller.js"></script>
   </body>
 </html>
