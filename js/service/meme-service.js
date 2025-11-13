@@ -4,15 +4,16 @@ const MEME_KEY = 'memeDB'
 var gImgs = []
 _createImgs()
 
-var gSavedMemes = loadFromStorage(MEME_KEY)
+var gSavedMemes = loadFromStorage(MEME_KEY) || []
 var gMeme = {}
 var gKeywordSearchCountMap = { funny: 12, cat: 16, baby: 2 }
 
 //create things
-function _createMeme(id) {
+function _createMeme(id, url) {
   return {
     selectedImgId: id,
     selectedLineIdx: 0,
+    url,
     lines: [
       {
         txt: 'Insert Text',
@@ -64,8 +65,11 @@ function setPositionToLine(idx, x, y, textWidth, textHeight) {
   gMeme.lines[idx].pos = { x, y, textWidth, textHeight }
 }
 
-function setMeme(id) {
-  gMeme = _createMeme(id)
+function setMeme(id, url, state) {
+  if (state === 'create') gMeme = _createMeme(id, url)
+  else if (state === 'edit') {
+    gMeme = _editMeme(id, url)
+  }
 }
 
 function changeColor(color) {
@@ -127,6 +131,16 @@ function deleteLine() {
   gMeme.lines.splice(lineIdx, 1)
 }
 
+function _editMeme(id, url) {
+  const meme = getMemeById(id)
+  return {
+    selectedImgId: id,
+    selectedLineIdx: meme.selectedLineIdx,
+    url,
+    lines: meme.lines,
+  }
+}
+
 //get things
 function getMeme() {
   return gMeme
@@ -139,6 +153,15 @@ function getImgs() {
 function getImgById(id) {
   var img = gImgs.find(img => img.id === id)
   return img
+}
+
+function getSavedMemes() {
+  return gSavedMemes
+}
+
+function getMemeById(id) {
+  const meme = gSavedMemes.find(meme => meme.selectedImgId === id)
+  return meme
 }
 
 function getIdxMemeById(id) {

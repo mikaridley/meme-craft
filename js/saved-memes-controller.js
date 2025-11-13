@@ -10,12 +10,12 @@ function onRenderSavedMemes() {
 function renderSavedMemes() {
   const elSavedMemes = document.querySelector('.saved-memes')
   var savedMemes = loadFromStorage(MEME_KEY)
-  console.log('savedMemes:', savedMemes)
+  if (!savedMemes) return
   let strHtml = ''
 
   savedMemes = savedMemes.map(meme => {
     return ` <div class="saved-meme-container relative">
-    <img src="${meme.data}" alt="Meme" />
+    <img onclick="onRenderEditor('${meme.selectedImgId}','${meme.url}','edit')" src="${meme.data}" alt="Meme" />
     <button onclick="onRemoveMeme('${meme.selectedImgId}')" class="btn close-btn" >X</button>
     </div>`
   })

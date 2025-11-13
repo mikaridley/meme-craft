@@ -1,0 +1,9 @@
+.modal-meme-saved {
+  border: 1px solid grey;
+  border-radius: 4rem;
+  bottom: 60%;
+}
+
+.modal-meme-saved::backdrop {
+  background: transparent;
+}

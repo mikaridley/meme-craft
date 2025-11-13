@@ -13,7 +13,7 @@ function renderGallery() {
   let strHtml = '<div class="upload-img">Upload</div>'
 
   imgs = imgs.map(img => {
-    return ` <img onclick="onRenderEditor('${img.id}')" src="${img.url}" alt="Meme" />`
+    return ` <img onclick="onRenderEditor('${img.id}','${img.url}','create')" src="${img.url}" alt="Meme" />`
   })
   strHtml += imgs.join('')
   elGallery.innerHTML = strHtml

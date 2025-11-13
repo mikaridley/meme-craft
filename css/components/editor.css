@@ -1,6 +1,6 @@
 .editor {
   width: 80vw;
-  /* height: 80vh; */
+  max-height: 80vh;
 
   gap: 2rem;
 

@@ -11,10 +11,12 @@ function onInit() {
 function renderMeme(isForDownload = false) {
   if (document.querySelector('.editor').classList.contains('hidden')) return
   const meme = getMeme()
-  const img = getImgById(meme.selectedImgId)
+  var img = getImgById(meme.selectedImgId)
+  if (!img) img = getMemeById(meme.selectedImgId)
 
   const elImg = new Image()
   elImg.src = img.url
+
   const ratio = +elImg.naturalHeight / +elImg.naturalWidth
   renderCanvas(ratio)
 
@@ -89,24 +91,19 @@ function drawFrame(memeline, x, y) {
 
 function renderAllTextLines(isForDownload) {
   var meme = getMeme()
-
-  drawText(meme.lines[0], 0, 'top', isForDownload)
-  if (meme.lines[1]) drawText(meme.lines[1], 1, 'bottom', isForDownload)
-
-  // if (memeLines[2]) {
-  //   memeLines.splice(0, 2)
-  //   memeLines.forEach(line => {
-  //     if (line) drawText(line.txt, 'middle')
-  //   })
-  // }
+  meme.lines.forEach((line, idx) => {
+    if (idx === 0) drawText(line, 0, 'top', isForDownload)
+    else if (idx === 1) drawText(line, 1, 'bottom', isForDownload)
+    else drawText(line, idx, 'middle', isForDownload)
+  })
 }
 
 //on things
-function onRenderEditor(id) {
+function onRenderEditor(id, url, state) {
   document.querySelector('.editor').classList.remove('hidden')
   document.querySelector('.gallery').classList.add('hidden')
   document.querySelector('.saved-memes').classList.add('hidden')
-  setMeme(id)
+  setMeme(id, url, state)
   renderMeme()
 }
 
@@ -204,6 +201,21 @@ function onCanvaClick(ev) {
 }
 
 function onSaveMeme() {
+  const savedMemes = getSavedMemes()
+  if (gSavedMemes.length >= 8) {
+    onOpenModal('Not enough space')
+    return
+  }
   const dataURL = gElCanvas.toDataURL()
   saveMeme(dataURL)
+  onOpenModal('Meme Saved')
+}
+
+function onOpenModal(txt) {
+  const modal = document.querySelector('.modal-meme-saved')
+  modal.innerText = txt
+  modal.showModal()
+  setTimeout(() => {
+    modal.close()
+  }, 1000)
 }
