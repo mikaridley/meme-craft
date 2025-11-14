@@ -22,6 +22,7 @@ function _createMeme(id, url) {
         pos: {},
         align: 'center',
         isChangedManuly: false,
+        isDraged: false,
       },
     ],
   }
@@ -54,6 +55,7 @@ function _createLine() {
     pos: {},
     align: 'center',
     isChangedManuly: false,
+    isDraged: false,
   })
 }
 
@@ -143,6 +145,15 @@ function _editMeme(id, url) {
     url,
     lines: meme.lines,
   }
+}
+
+function setTextDrag(lineIndex, isDrag) {
+  gMeme.lines[lineIndex].isDraged = isDrag
+}
+
+function moveText(lineIndex, dx, dy) {
+  gMeme.lines[lineIndex].pos.x += dx
+  gMeme.lines[lineIndex].pos.y += dy
 }
 
 //get things

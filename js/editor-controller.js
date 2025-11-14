@@ -2,7 +2,8 @@
 var gElCanvas
 var gCtx
 const BASE_CANVAS_HEIGHT = 500
-var isTextClicked = true
+let gStartPos
+let isTextClicked = false
 
 //render things
 function renderMeme(isForDownload = false) {
@@ -207,26 +208,8 @@ function onDownloadImg(elLink) {
 }
 
 function onCanvaClick(ev) {
-  const { offsetX, offsetY } = ev
-  console.log(`curr tauch:   ${offsetX},${offsetY}`)
-  const memeLines = getMeme().lines
-  // console.log(
-  //   `0:   ${memeLines[0].pos.x},  ${memeLines[0].pos.y}  text width:   ${memeLines[0].pos.textWidth},  text height:   ${memeLines[0].pos.textHeight}`
-  // )
-  // console.log(
-  //   `1:   ${memeLines[1].pos.x},  ${memeLines[1].pos.y}  text width:   ${memeLines[1].pos.textWidth},  text height:   ${memeLines[0].pos.textHeight}`
-  // )
-  // console.log(
-  //   `2:   ${memeLines[2].pos.x},  ${memeLines[2].pos.y}  text width:   ${memeLines[2].pos.textWidth},  text height:   ${memeLines[0].pos.textHeight}`
-  // )
-  const line = memeLines.findIndex(line => {
-    return (
-      offsetX >= line.pos.x &&
-      offsetX <= line.pos.x + line.pos.textWidth &&
-      offsetY >= line.pos.y &&
-      offsetY <= line.pos.y + line.pos.textHeight
-    )
-  })
+  const pos = { x: ev.offsetX, y: ev.offsetY }
+  const line = whichTextClicked(pos)
   if (line === -1) isTextClicked = false
   else isTextClicked = true
   console.log('line:', line)
@@ -257,4 +240,81 @@ function onOpenModal(txt) {
   setTimeout(() => {
     modal.close()
   }, 2000)
+}
+
+function onDown(ev) {
+  const pos = getEvPos(ev)
+  const line = whichTextClicked(pos)
+
+  if (line === -1) return
+
+  setTextDrag(line, true)
+  //Save the pos we start from
+  gStartPos = pos
+  document.body.style.cursor = 'grabbing'
+}
+
+function onMove(ev) {
+  const memeLines = getMeme().lines
+  const index = memeLines.findIndex(line => line.isDraged)
+  const line = memeLines[index]
+  console.log('line:', line)
+
+  if (!line) return
+  console.log('onMove')
+
+  const pos = getEvPos(ev)
+  console.log('pos', pos)
+  // Calc the delta, the diff we moved
+  const dx = pos.x - gStartPos.x
+  const dy = pos.y - gStartPos.y
+  moveText(index, dx, dy)
+  // Save the last pos, we remember where we`ve been and move accordingly
+  gStartPos = pos
+  // The canvas is render again after every move
+  renderMeme()
+}
+
+function onUp() {
+  const line = whichTextClicked(pos)
+  setTextDrag(line, false)
+  document.body.style.cursor = 'grab'
+}
+
+function getEvPos(ev) {
+  const TOUCH_EVS = ['touchstart', 'touchmove', 'touchend']
+
+  let pos = {
+    x: ev.offsetX,
+    y: ev.offsetY,
+  }
+
+  if (TOUCH_EVS.includes(ev.type)) {
+    // Prevent triggering the mouse ev
+    ev.preventDefault()
+    // Gets the first touch point
+    ev = ev.changedTouches[0]
+    // Calc the right pos according to the touch screen
+    pos = {
+      x: ev.pageX - ev.target.offsetLeft - ev.target.clientLeft,
+      y: ev.pageY - ev.target.offsetTop - ev.target.clientTop,
+    }
+  }
+  return pos
+}
+
+//other
+function whichTextClicked(pos) {
+  const { x, y } = pos
+  console.log(`curr tauch:   ${x},${y}`)
+  const memeLines = getMeme().lines
+  const line = memeLines.findIndex(line => {
+    return (
+      x >= line.pos.x &&
+      x <= line.pos.x + line.pos.textWidth &&
+      y >= line.pos.y &&
+      y <= line.pos.y + line.pos.textHeight
+    )
+  })
+  return line
 }

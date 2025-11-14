@@ -28,7 +28,17 @@
 
       <section class="editor hidden">
         <dialog class="modal-meme-saved"></dialog>
-        <canvas onclick="onCanvaClick(event)"></canvas>
+
+        <canvas
+          onclick="onCanvaClick(event)"
+          onmousedown="onDown(event)"
+          ontouchstart="onDown(event)"
+          onmouseup="onUp()"
+          ontouchend="onUp()"
+          onmousemove="onMove(event)"
+          ontouchmove="onMove(event)"
+        ></canvas>
+
         <section class="canvas-settings">
           <sections class="text-input-container">
             <h2 class="setting-header">Crafting</h2>
