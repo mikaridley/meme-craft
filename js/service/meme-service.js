@@ -65,10 +65,10 @@ function setLineText(value) {
   gMeme.lines[lineIdx].txt = value
 }
 
-function setPositionToLine(idx, x, y, textWidth, textHeight) {
+function setPositionToLine(idx, xStart, x, y, textWidth, textHeight) {
   // const lineIdx = gMeme.selectedLineIdx
   // if (Object.keys(gMeme.lines[lineIdx].pos).length === 0)
-  gMeme.lines[idx].pos = { x, y, textWidth, textHeight }
+  gMeme.lines[idx].pos = { x, y, xStart, textWidth, textHeight }
 }
 
 function setMeme(id, url, state) {
@@ -120,21 +120,30 @@ function setRightText() {
   gMeme.lines[lineIdx].align = 'right'
 }
 
+function setManualText() {
+  const lineIdx = gMeme.selectedLineIdx
+  gMeme.lines[lineIdx].align = 'manual'
+}
+
 function moveTextUp() {
   const lineIdx = gMeme.selectedLineIdx
-  gMeme.lines[lineIdx].isChangedManuly = true
+  setIsChangedManuly(true)
   gMeme.lines[lineIdx].pos.y -= 10
 }
 
 function moveTextDown() {
   const lineIdx = gMeme.selectedLineIdx
-  gMeme.lines[lineIdx].isChangedManuly = true
+  setIsChangedManuly(true)
   gMeme.lines[lineIdx].pos.y += 10
 }
 
 function deleteLine() {
   const lineIdx = gMeme.selectedLineIdx
   gMeme.lines.splice(lineIdx, 1)
+}
+
+function setIsChangedManuly(state) {
+  gMeme.lines[gMeme.selectedLineIdx].isChangedManuly = state
 }
 
 function _editMeme(id, url) {

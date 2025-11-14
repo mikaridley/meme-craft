@@ -2,8 +2,9 @@
 var gElCanvas
 var gCtx
 const BASE_CANVAS_HEIGHT = 500
-let gStartPos
-let isTextClicked = false
+let gStartPos = { line: -1, pos: null }
+let isTextClicked = true
+let isTextDraged = false
 
 //render things
 function renderMeme(isForDownload = false) {
@@ -42,36 +43,35 @@ function drawText(memeline, idx, position, isForDownload) {
   if (!memeline) return
   const scaleFactor = gElCanvas.height / BASE_CANVAS_HEIGHT
   const scaledSize = memeline.size * scaleFactor
-
   const selectedId = getMeme().selectedLineIdx
+  const textMetrics = gCtx.measureText(memeline.txt)
+  const textWidth = textMetrics.width
+  const textHeight = memeline.size
   gCtx.font = `${scaledSize}px Impact`
   gCtx.textAlign = 'center'
   gCtx.textBaseline = 'top'
-
   gCtx.lineWidth = scaledSize / 20
-
   gCtx.strokeStyle = 'black'
   gCtx.fillStyle = memeline.color
 
   //set the align text the x
-  if (memeline.align === 'left')
-    var x = gElCanvas.width / 2 - gElCanvas.width * 0.2
+  let x
+  if (memeline.align === 'left') x = gElCanvas.width / 2 - gElCanvas.width * 0.2
   else if (memeline.align === 'right')
-    var x = gElCanvas.width / 2 + gElCanvas.width * 0.2
-  else var x = gElCanvas.width / 2
+    x = gElCanvas.width / 2 + gElCanvas.width * 0.2
+  else if (memeline.align === 'center') x = gElCanvas.width / 2
+  else if (memeline.align === 'manual') x = memeline.pos.x
 
-  //set the position - the y
+  let y
   if (!memeline.isChangedManuly) {
-    if (position === 'top') var y = gElCanvas.height * 0.1
-    else if (position === 'bottom') var y = gElCanvas.height * 0.8
-    else if ('middle') var y = gElCanvas.height / 2
-  } else var y = memeline.pos.y
+    //set the position - the y
+    if (position === 'top') y = gElCanvas.height * 0.1
+    else if (position === 'bottom') y = gElCanvas.height * 0.8
+    else if ('middle') y = gElCanvas.height / 2
+  } else y = memeline.pos.y
 
-  const textMetrics = gCtx.measureText(memeline.txt)
-  const textWidth = textMetrics.width
-  const textHeight = memeline.size
-  const xStart = x - textWidth / 2
-  setPositionToLine(idx, xStart, y, textWidth, textHeight)
+  const xStart = x - textWidth / 2 //help to click on the right text area
+  setPositionToLine(idx, xStart, x, y, textWidth, textHeight)
 
   gCtx.fillText(memeline.txt, x, y)
   gCtx.strokeText(memeline.txt, x, y)
@@ -142,6 +142,7 @@ function onIncreaseFont() {
 }
 
 function onAddLine() {
+  isTextClicked = true
   addLine()
   renderMeme()
 }
@@ -212,7 +213,6 @@ function onCanvaClick(ev) {
   const line = whichTextClicked(pos)
   if (line === -1) isTextClicked = false
   else isTextClicked = true
-  console.log('line:', line)
   switchLine(line)
   renderMeme()
 }
@@ -245,39 +245,46 @@ function onOpenModal(txt) {
 function onDown(ev) {
   const pos = getEvPos(ev)
   const line = whichTextClicked(pos)
-
+  console.log('line:', line)
   if (line === -1) return
 
+  switchLine(line)
+  setIsChangedManuly(true)
   setTextDrag(line, true)
+  setManualText()
+
+  isTextDraged = true
   //Save the pos we start from
-  gStartPos = pos
+  gStartPos.pos = pos
+  gStartPos.line = line
+
   document.body.style.cursor = 'grabbing'
 }
 
 function onMove(ev) {
+  if (gStartPos.line === -1) return
   const memeLines = getMeme().lines
   const index = memeLines.findIndex(line => line.isDraged)
   const line = memeLines[index]
-  console.log('line:', line)
 
   if (!line) return
-  console.log('onMove')
 
   const pos = getEvPos(ev)
-  console.log('pos', pos)
   // Calc the delta, the diff we moved
-  const dx = pos.x - gStartPos.x
-  const dy = pos.y - gStartPos.y
+  const dx = pos.x - gStartPos.pos.x
+  const dy = pos.y - gStartPos.pos.y
   moveText(index, dx, dy)
   // Save the last pos, we remember where we`ve been and move accordingly
-  gStartPos = pos
+  gStartPos.pos = pos
   // The canvas is render again after every move
   renderMeme()
 }
 
 function onUp() {
-  const line = whichTextClicked(pos)
-  setTextDrag(line, false)
+  setTextDrag(gStartPos.line, false)
+
+  gStartPos.pos = null
+  isTextDraged = false
   document.body.style.cursor = 'grab'
 }
 
@@ -306,12 +313,11 @@ function getEvPos(ev) {
 //other
 function whichTextClicked(pos) {
   const { x, y } = pos
-  console.log(`curr tauch:   ${x},${y}`)
   const memeLines = getMeme().lines
   const line = memeLines.findIndex(line => {
     return (
-      x >= line.pos.x &&
-      x <= line.pos.x + line.pos.textWidth &&
+      x >= line.pos.xStart &&
+      x <= line.pos.xStart + line.pos.textWidth &&
       y >= line.pos.y &&
       y <= line.pos.y + line.pos.textHeight
     )
