@@ -1,0 +1,427 @@
+'use strict'
+
+function getImgsFromDB() {
+  return [
+    //1 trump
+    {
+      id: generateRandomID(),
+      url: `img/${1}.jpg`,
+      keywords: [
+        'angry',
+        'pointing',
+        'yelling',
+        'protest',
+        'reaction',
+        'trump',
+        'political',
+        'speech',
+        'president',
+        'argument',
+      ],
+    },
+    //2 Maria in Field
+    {
+      id: generateRandomID(),
+      url: `img/${2}.jpg`,
+      keywords: [
+        'sound of music',
+        'freedom',
+        'open field',
+        'mountain',
+        'happy',
+        'singing',
+        'joy',
+        'spreading arms',
+        'running',
+        'dramatic',
+      ],
+    },
+    //3 Baby and Puppy
+    {
+      id: generateRandomID(),
+      url: `img/${3}.jpg`,
+      keywords: [
+        'sleeping',
+        'cozy',
+        'best friends',
+        'naptime',
+        'cute',
+        'baby',
+        'puppy',
+        'dachshund',
+        'under the covers',
+        'aww',
+      ],
+    },
+    //4 Cat on Laptop
+    {
+      id: generateRandomID(),
+      url: `img/${4}.jpg`,
+      keywords: [
+        'work from home',
+        'distraction',
+        'lazy',
+        'tired',
+        'laptop',
+        'cat',
+        'sleeping',
+        'keyboard',
+        'nap',
+        'feline',
+      ],
+    },
+    //5 Success Kid
+    {
+      id: generateRandomID(),
+      url: `img/${5}.jpg`,
+      keywords: [
+        'success kid',
+        'fist pump',
+        'victory',
+        'win',
+        'small victory',
+        'determined',
+        'triumph',
+        'achievement',
+        'beach',
+        'yes',
+      ],
+    }, //6 Ancient Aliens Guy
+    {
+      id: generateRandomID(),
+      url: `img/${6}.jpg`,
+      keywords: [
+        'ancient aliens guy',
+        'history channel',
+        'conspiracy',
+        'theory',
+        'aliens',
+        'crazy hair',
+        'unbelievable',
+        'explaining',
+        'sure',
+        'i mean',
+      ],
+    }, //7Surprised Baby
+    {
+      id: generateRandomID(),
+      url: `img/${7}.jpg`,
+      keywords: [
+        'surprised baby',
+        'shocked',
+        'wide eyes',
+        'confused',
+        'staring',
+        'big reaction',
+        'oh my god',
+        'meme face',
+        'gasp',
+        'infant',
+      ],
+    }, //8 Willy Wonka
+    {
+      id: generateRandomID(),
+      url: `img/${8}.jpg`,
+      keywords: [
+        'willy wonka',
+        'gene wilder',
+        'condescending',
+        'sarcastic',
+        'tell me more',
+        'purple suit',
+        'top hat',
+        'amused',
+        'smug',
+        'snarky',
+      ],
+    }, //9 Evil Plotting Baby
+    {
+      id: generateRandomID(),
+      url: `img/${9}.jpg`,
+      keywords: [
+        'evil plotting baby',
+        'rubbing hands',
+        'cackling',
+        'scheme',
+        'mischievous',
+        'sly',
+        'laughing baby',
+        'villain',
+        'funny kid',
+        'planning',
+      ],
+    }, //10 Obama Laughing
+    {
+      id: generateRandomID(),
+      url: `img/${10}.jpg`,
+      keywords: [
+        'obama',
+        'laughing',
+        'cringe face',
+        'squeezed eyes',
+        'big smile',
+        'hilarious',
+        'reaction',
+        'president',
+        'politician',
+        'chuckle',
+      ],
+    }, //11 Basketball Players Kissing
+    {
+      id: generateRandomID(),
+      url: `img/${11}.jpg`,
+      keywords: [
+        'awkward kiss',
+        'basketball',
+        'sports',
+        'celtic',
+        'lakers',
+        'funny fail',
+        'bloopers',
+        'close up',
+        'hug fail',
+        'bromance',
+      ],
+    }, //12 Pointing Man in Glasses
+    {
+      id: generateRandomID(),
+      url: `img/${12}.jpg`,
+      keywords: [
+        'pointing fingers',
+        'gotcha',
+        'you',
+        'i see you',
+        'glasses',
+        'older man',
+        'professor',
+        'serious',
+        'accusing',
+        'host',
+      ],
+    }, //13 Gatsby Toast
+    {
+      id: generateRandomID(),
+      url: `img/${13}.jpg`,
+      keywords: [
+        'gatsby',
+        'leonardo dicaprio',
+        'cheers',
+        'toast',
+        'celebration',
+        'smiling',
+        'clapping',
+        'fancy',
+        'champagne',
+        'party',
+      ],
+    }, //14 Morpheus from The Matrix
+    {
+      id: generateRandomID(),
+      url: `img/${14}.jpg`,
+      keywords: [
+        'morpheus',
+        'matrix',
+        'red pill blue pill',
+        'shades',
+        'sunglasses reflection',
+        'serious',
+        'what if i told you',
+        'keanu reeves',
+        'movie quote',
+        'cool',
+      ],
+    }, //15 Boromir One Does Not Simply
+    {
+      id: generateRandomID(),
+      url: `img/${15}.jpg`,
+      keywords: [
+        'boromir',
+        'one does not simply',
+        'lord of the rings',
+        'lotr',
+        'sean bean',
+        'gimli',
+        'epic',
+        'fantasy',
+        'movie meme',
+        'dramatic',
+      ],
+    }, //16 Captain Picard Facepalm
+    {
+      id: generateRandomID(),
+      url: `img/${16}.jpg`,
+      keywords: [
+        'captain picard',
+        'star trek',
+        'facepalm',
+        'embarrassed',
+        'cringe',
+        'awkward',
+        'disappointed',
+        'smug',
+        'gentle facepalm',
+        'professor',
+      ],
+    }, //17 Woody and Buzz Staring
+    {
+      id: generateRandomID(),
+      url: `img/${17}.jpg`,
+      keywords: [
+        'woody and buzz',
+        'toy story',
+        'unimpressed',
+        'disbelief',
+        'staring',
+        'reaction',
+        'buzz lightyear',
+        'woody cowboy',
+        'pointing',
+        'two guys',
+      ],
+    }, //18 Putin Hand Gesture
+    {
+      id: generateRandomID(),
+      url: `img/${18}.jpg`,
+      keywords: [
+        'putin',
+        'vladimir putin',
+        'speaking',
+        'politician',
+        'explaining',
+        'counting',
+        'hand gesture',
+        'serious',
+        'russia',
+        'formal',
+      ],
+    }, //19 Pauly D/Jersey Shore Shocked
+    {
+      id: generateRandomID(),
+      url: `img/${19}.jpg`,
+      keywords: [
+        'jersey shore',
+        'pauly d',
+        'shocked',
+        'surprised',
+        'reaction',
+        'screaming',
+        'oh no',
+        'gasp',
+        'reality tv',
+        'meme face',
+      ],
+    }, //20 Ancient Aliens Guy
+    {
+      id: generateRandomID(),
+      url: `img/${20}.jpg`,
+      keywords: [
+        'ancient aliens',
+        'theory',
+        'history',
+        'guy with hair',
+        'explaining',
+        'conspiracy',
+        'meme guy',
+        'unbelievable',
+        'aliens again',
+        'i mean',
+      ],
+    }, //21 Dr. Evil Peace Sigm
+    {
+      id: generateRandomID(),
+      url: `img/${21}.jpg`,
+      keywords: [
+        'dr evil',
+        'austin powers',
+        'one million dollars',
+        'peace sign',
+        'villain',
+        'funny',
+        'mike myers',
+        'bald',
+        'satire',
+        'plotting',
+      ],
+    }, //22 Puppies Kissing
+    {
+      id: generateRandomID(),
+      url: `img/${22}.jpg`,
+      keywords: [
+        'puppies',
+        'labrador',
+        'kissing',
+        'licking',
+        'cute animals',
+        'love',
+        'aww',
+        'dogs',
+        'puppy love',
+        'best friends',
+      ],
+    }, //23 Dancing Kids
+    {
+      id: generateRandomID(),
+      url: `img/${23}.jpg`,
+      keywords: [
+        'dancing kids',
+        'triumph',
+        'celebration',
+        'happy dance',
+        'victory',
+        'excitement',
+        'kids',
+        'funny dance',
+        'winning',
+        'joyful',
+      ],
+    }, //24 Donald Trump Pointing/Angry
+    {
+      id: generateRandomID(),
+      url: `img/${24}.jpg`,
+      keywords: [
+        'donald trump',
+        'angry',
+        'pointing up',
+        'speech',
+        'mad',
+        'finger point',
+        'political',
+        'argument',
+        'president',
+        'warning',
+      ],
+    }, //25 French Bulldog Puppy Stretching
+    {
+      id: generateRandomID(),
+      url: `img/${25}.jpg`,
+      keywords: [
+        'french bulldog',
+        'puppy',
+        'stretching',
+        'yoga dog',
+        'frenchie',
+        'cute',
+        'dog',
+        'dog meme',
+        'funny pose',
+        'awkward',
+      ],
+    }, //26 Oprah Winfrey Excited
+    {
+      id: generateRandomID(),
+      url: `img/${26}.jpg`,
+      keywords: [
+        'oprah',
+        'you get a car',
+        'excited',
+        'screaming',
+        'celebration',
+        'happy',
+        'mic',
+        'arms wide',
+        'big reaction',
+        'talk show',
+      ],
+    },
+  ]
+}

@@ -1,8 +1,7 @@
 'use strict'
 
 const MEME_KEY = 'memeDB'
-var gImgs = []
-_createImgs(34)
+var gImgs = getImgsFromDB()
 
 var gSavedMemes = loadFromStorage(MEME_KEY) || []
 var gMeme = {}

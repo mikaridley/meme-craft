@@ -16,22 +16,12 @@ function onRenderGallery() {
 function renderGallery() {
   const elGallery = document.querySelector('.gallery')
   var imgs = getImgs()
-  let strHtml = `<div class="upload-img">
-  <label for="upload">Upload</label>
-          <input
-            type="file"
-            id="upload"
-            class="hidden btn"
-            name="image"
-            onchange="onImgInput(event)"
-          />
-        </div>`
-
+  let strHtml = ''
   imgs = imgs.map(img => {
     return ` <img class="gallery-img"onclick="onRenderEditor('${img.id}','${img.url}','create')" src="${img.url}" alt="Meme" />`
   })
   strHtml += imgs.join('')
-  elGallery.innerHTML = strHtml
+  elGallery.innerHTML += strHtml
 }
 
 function toggleMenu() {

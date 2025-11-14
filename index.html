@@ -24,7 +24,35 @@
     </header>
 
     <main class="main-layout">
-      <section class="gallery"></section>
+      <section>
+        <input
+          class="gallery-input"
+          list="keywords"
+          name="meme-keywords"
+          placeholder="Type or select..."
+        />
+        <datalist id="keywords">
+          <option value="funny"></option>
+          <option value="cat"></option>
+          <option value="dog"></option>
+          <option value="baby"></option>
+          <option value="game"></option>
+          <option value="movie"></option>
+        </datalist>
+      </section>
+
+      <section class="gallery">
+        <div class="upload-img">
+          <label for="upload">Upload</label>
+          <input
+            type="file"
+            id="upload"
+            class="hidden btn"
+            name="image"
+            onchange="onImgInput(event)"
+          />
+        </div>
+      </section>
 
       <section class="editor hidden">
         <dialog class="modal-meme-saved"></dialog>
@@ -170,6 +198,7 @@
 
     <script src="js/service/storage-service.js"></script>
     <script src="js/service/util-service.js"></script>
+    <script src="js/service/images-db.js"></script>
     <script src="js/service/meme-service.js"></script>
     <script src="js/gallery-controller.js"></script>
     <script src="js/editor-controller.js"></script>

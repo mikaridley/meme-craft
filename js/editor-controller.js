@@ -44,7 +44,7 @@ function drawText(memeline, idx, position, isForDownload) {
   const scaleFactor = gElCanvas.height / BASE_CANVAS_HEIGHT
   const scaledSize = memeline.size * scaleFactor
   const selectedId = getMeme().selectedLineIdx
-  const padding = 25
+  const padding = 20
   gCtx.font = `${scaledSize}px Impact`
   gCtx.textAlign = 'center'
   gCtx.textBaseline = 'top'
