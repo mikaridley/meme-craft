@@ -2,7 +2,7 @@
 
 const MEME_KEY = 'memeDB'
 var gImgs = []
-_createImgs()
+_createImgs(34)
 
 var gSavedMemes = loadFromStorage(MEME_KEY) || []
 var gMeme = {}
@@ -36,8 +36,8 @@ function _createImg(url, keyWords) {
   }
 }
 
-function _createImgs() {
-  for (var i = 1; i <= 18; i++) {
+function _createImgs(amount) {
+  for (var i = 1; i <= amount; i++) {
     var url = `img/${i}.jpg`
     gImgs.push(_createImg(url))
   }
@@ -66,8 +66,6 @@ function setLineText(value) {
 }
 
 function setPositionToLine(idx, xStart, x, y, textWidth, textHeight) {
-  // const lineIdx = gMeme.selectedLineIdx
-  // if (Object.keys(gMeme.lines[lineIdx].pos).length === 0)
   gMeme.lines[idx].pos = { x, y, xStart, textWidth, textHeight }
 }
 
