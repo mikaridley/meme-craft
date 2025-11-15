@@ -33,6 +33,43 @@ function renderGallery() {
   strHtml += imgs.join('')
   elGallery.innerHTML = strHtml
   renderKeyWords()
+  renderDatalist()
+}
+
+function renderKeyWords(amount = 5) {
+  const keywords = getKeywordsSearch()
+  const elSearchWords = document.querySelector('.search-words')
+  let strHtml = []
+  for (let i = 0; i < amount; i++) {
+    if (!keywords[i]) continue
+    strHtml.push(
+      `<h3 onclick="onSearchWord(this.innerText)" class="word-${i}">${keywords[i][0]}</h3>`
+    )
+  }
+
+  strHtml = shuffleArray(strHtml)
+  elSearchWords.innerHTML = strHtml.join(' ')
+
+  const baseFont = 1
+  const fontSizeAdd = 0.2
+  for (let i = 0; i < amount; i++) {
+    if (!keywords[i]) continue
+    let elWord = document.querySelector(`.word-${i}`)
+    let newFontSize = baseFont + fontSizeAdd * keywords[i][1]
+    if (newFontSize > 3.5) newFontSize = 3.5
+    elWord.style.fontSize = `${newFontSize}rem`
+  }
+}
+
+function renderDatalist(amount = 5) {
+  const keywords = getKeywordsSearch()
+  const elDatalist = document.querySelector('#keywords')
+  let strHtml = ''
+  for (let i = 0; i < amount; i++) {
+    if (!keywords[i]) continue
+    strHtml += `<option value="${keywords[i][0]}"></option>`
+  }
+  elDatalist.innerHTML = strHtml
 }
 
 function toggleMenu() {
@@ -78,31 +115,6 @@ function onFilterImgs(value) {
 function onSaveSearch(value) {
   saveSearch(value)
   renderGallery()
-}
-
-function renderKeyWords(amount = 5) {
-  const keywords = getKeywordsSearch()
-  const elSearchWords = document.querySelector('.search-words')
-  let strHtml = []
-  for (let i = 0; i < amount; i++) {
-    if (!keywords[i]) continue
-    strHtml.push(
-      `<h3 onclick="onSearchWord(this.innerText)" class="word-${i}">${keywords[i][0]}</h3>`
-    )
-  }
-
-  strHtml = shuffleArray(strHtml)
-  elSearchWords.innerHTML = strHtml.join(' ')
-
-  const baseFont = 1
-  const fontSizeAdd = 0.2
-  for (let i = 0; i < amount; i++) {
-    if (!keywords[i]) continue
-    let elWord = document.querySelector(`.word-${i}`)
-    let newFontSize = baseFont + fontSizeAdd * keywords[i][1]
-    if (newFontSize > 3.5) newFontSize = 3.5
-    elWord.style.fontSize = `${newFontSize}rem`
-  }
 }
 
 function onSearchWord(word) {
