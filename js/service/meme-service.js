@@ -161,6 +161,7 @@ function _editMeme(id, url) {
 }
 
 function setTextDrag(lineIndex, isDrag) {
+  console.log('lineIndex:', lineIndex)
   if (lineIndex === -1) return
   gMeme.lines[lineIndex].isDraged = isDrag
 }

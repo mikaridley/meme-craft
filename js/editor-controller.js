@@ -304,6 +304,7 @@ function onImgReady() {
   document.querySelector('.done-btn').classList.add('hidden')
   document.querySelector('.download-btn').classList.remove('hidden')
   document.querySelector('.share-btn').classList.remove('hidden')
+  switchLine(-1)
 }
 
 function onDownloadImg(elLink) {
@@ -380,5 +381,11 @@ function whichTextClicked(pos) {
       y <= line.pos.y + line.pos.textHeight
     )
   })
+
+  if (line !== -1) {
+    document.querySelector('.done-btn').classList.remove('hidden')
+    document.querySelector('.download-btn').classList.add('hidden')
+    document.querySelector('.share-btn').classList.add('hidden')
+  }
   return line
 }

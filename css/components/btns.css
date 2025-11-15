@@ -9,6 +9,8 @@
 
 .btn {
   background-color: var(--clr-border-light);
+  font-weight: bold;
+  text-transform: uppercase;
 
   padding-block: 0.5em;
   padding-inline: 0.5em;
@@ -29,4 +31,11 @@
 }
 
 .share-btn {
+  border: none;
+  color: var(--clr-txt-base);
+  font-family: 'inter', sarif;
+  font-size: 1.5rem;
+  width: 100%;
+
+  cursor: pointer;
 }

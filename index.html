@@ -24,30 +24,33 @@
     </header>
 
     <main class="main-layout">
-      <section class="gallery-search-container hidden">
-        <input
-          class="gallery-input"
-          type="search"
-          oninput="onFilterImgs(this.value)"
-          onblur="onSaveSearch(this.value)"
-          list="keywords"
-          name="meme-keywords"
-          placeholder="Type or select..."
-        />
-        <datalist id="keywords">
-          <option value="funny"></option>
-          <option value="cat"></option>
-          <option value="dog"></option>
-          <option value="baby"></option>
-          <option value="game"></option>
-          <option value="movie"></option>
-        </datalist>
+      <!-- ----------------------------------------------------------------------------------- -->
+      <section class="gallery-layout">
+        <section class="gallery-search-container hidden">
+          <input
+            class="gallery-input"
+            type="search"
+            oninput="onFilterImgs(this.value)"
+            onblur="onSaveSearch(this.value)"
+            list="keywords"
+            name="meme-keywords"
+            placeholder="SEARCH BY TAG..."
+          />
+          <datalist id="keywords">
+            <option value="funny"></option>
+            <option value="cat"></option>
+            <option value="dog"></option>
+            <option value="baby"></option>
+            <option value="game"></option>
+            <option value="movie"></option>
+          </datalist>
 
-        <div class="search-words"></div>
+          <div class="search-words"></div>
+        </section>
+
+        <section class="gallery"></section>
       </section>
-
-      <section class="gallery"></section>
-
+      <!-- ----------------------------------------------------------------------------------- -->
       <section class="editor hidden">
         <dialog class="modal-meme-saved"></dialog>
 
@@ -143,15 +146,15 @@
             enctype="multipart/form-data"
             onsubmit="onShareImg(event)"
           >
-            <button class="btn" type="submit">Share</button>
+            <button class="btn share-btn" type="submit">Share</button>
           </form>
 
           <a href="#" class="btn save-btn" onclick="onSaveMeme()">Save</a>
         </section>
       </section>
-
+      <!-- ----------------------------------------------------------------------------------- -->
       <section class="saved-memes gallery hidden"></section>
-
+      <!-- ----------------------------------------------------------------------------------- -->
       <section class="about hidden">
         <p>
           Meme-Craft lets you create fun, downloadable memes with your own
@@ -172,6 +175,7 @@
           we’d love to hear from you!
         </p>
       </section>
+      <!-- ----------------------------------------------------------------------------------- -->
     </main>
 
     <section class="about hidden">
