@@ -71,7 +71,7 @@ function drawText(memeline, idx, position, isForDownload) {
   const textMetrics = gCtx.measureText(memeline.txt)
   const textWidth = textMetrics.width
   const textHeight = scaledSize
-  const xStart = x - textWidth / 2
+  var xStart = x - textWidth / 2
   const xEnd = x + textWidth / 2
 
   //prevent the text from overflow on x
@@ -79,16 +79,21 @@ function drawText(memeline, idx, position, isForDownload) {
   if (xEnd > gElCanvas.width - padding)
     x = gElCanvas.width - padding - textWidth / 2
 
-  // const yStart = y - textHeight / 2
-  // const yEnd = y + textHeight / 2
-  // console.log(`y   ${yStart},  ${y},  ${yEnd}`)
-  // if (yStart < 10) y = 10 + textHeight / 2
-  // if (yEnd > gElCanvas.height - 10) y = gElCanvas.height - 10 - textHeight / 2
-
   setPositionToLine(idx, xStart, x, y, textWidth, textHeight)
 
-  gCtx.fillText(memeline.txt, x, y)
-  gCtx.strokeText(memeline.txt, x, y)
+  // ---------- ROTATION SUPPORT ----------
+
+  if (memeline.rotation !== 0) {
+    gCtx.save()
+    gCtx.translate(x, y + textHeight / 2)
+    gCtx.rotate(((memeline.rotation || 0) * Math.PI) / 180)
+    gCtx.fillText(memeline.txt, 0, -textHeight / 2)
+    gCtx.strokeText(memeline.txt, 0, -textHeight / 2)
+    gCtx.restore()
+  } else {
+    gCtx.fillText(memeline.txt, x, y)
+    gCtx.strokeText(memeline.txt, x, y)
+  }
 
   if (idx === selectedId && !isForDownload) drawFrame(memeline, x, y)
 }
@@ -102,12 +107,21 @@ function drawFrame(memeline, x, y) {
   const textHeight = scaledSize
 
   const padding = 10
-
-  const rectX = x - textWidth / 2 - padding
-  const rectY = y - padding / 2
-
-  const rectWidth = textWidth + padding * 2
-  const rectHeight = textHeight + padding
+  let rectX
+  let rectY
+  let rectWidth
+  let rectHeight
+  if (memeline.rotation === 0 || memeline.rotation === 180) {
+    rectX = x - textWidth / 2 - padding
+    rectY = y - padding / 2
+    rectWidth = textWidth + padding * 2
+    rectHeight = textHeight + padding
+  } else {
+    rectX = x - textHeight / 2 - padding
+    rectY = y - textWidth / 2 + padding * 2
+    rectWidth = textHeight + padding * 2
+    rectHeight = textWidth + padding
+  }
 
   gCtx.lineWidth = 3
   gCtx.strokeStyle = '#00ffb6'
@@ -167,7 +181,8 @@ function onAddLine() {
 
 function onSwitchLine() {
   if (!isTextClicked) return
-  switchLine()
+  // switchLine()
+  rotateLine()
   renderMeme()
 }
 
@@ -402,8 +417,9 @@ async function uploadImg(imgData, onSuccess) {
 //other
 function whichTextClicked(pos) {
   const { x, y } = pos
-  const memeLines = getMeme().lines
-  const line = memeLines.findIndex(line => {
+  const meme = getMeme()
+
+  var line = meme.lines.findIndex(line => {
     return (
       x >= line.pos.xStart &&
       x <= line.pos.xStart + line.pos.textWidth &&
