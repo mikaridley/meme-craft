@@ -140,7 +140,6 @@ function setIsChangedManuly(state) {
 
 function _editMeme(id, url) {
   const meme = getMemeById(id)
-  console.log('meme.lines:', meme.lines)
   return {
     selectedImgId: id,
     selectedLineIdx: meme.selectedLineIdx,
@@ -150,7 +149,6 @@ function _editMeme(id, url) {
 }
 
 function setTextDrag(lineIndex, isDrag) {
-  console.log('lineIndex:', lineIndex)
   if (lineIndex === -1) return
   gMeme.lines[lineIndex].isDraged = isDrag
 }
@@ -171,7 +169,6 @@ function getImgs() {
 
 function getRandomImg() {
   const randImg = getRandomInt(0, getImgs().length)
-  console.log('gImgs[randImg]:', gImgs[randImg])
   return gImgs[randImg]
 }
 

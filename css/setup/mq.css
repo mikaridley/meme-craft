@@ -1,4 +1,4 @@
-@media (max-width: 1200px) {
+@media (max-width: 1250px) {
   .editor {
     width: 90vw;
   }
@@ -47,12 +47,19 @@
       }
     }
   }
+  .flexible-btn {
+    font-size: 1rem;
+  }
 }
 
 /* mobile only */
 @media (max-width: 850px) {
   .search-words {
     display: none;
+  }
+
+  .gallery-layout {
+    justify-items: center;
   }
 
   .gallery-search-container {
@@ -109,10 +116,6 @@
 }
 
 @media (max-width: 480px) {
-  .gallery-layout {
-    justify-items: center;
-  }
-
   .gallery {
     padding: 0.3rem;
     border-radius: 0px;

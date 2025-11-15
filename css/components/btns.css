@@ -38,8 +38,8 @@
 .flexible-btn {
   justify-self: end;
   border-radius: 10rem;
-  width: 50%;
-  height: 60%;
+  width: max-content;
+  height: max-content;
 }
 
 .facebook-btn {
