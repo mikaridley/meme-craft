@@ -1,8 +1,17 @@
+.save-btns-container {
+  max-width: 400px;
+  grid-template-columns: 1fr 1fr 1fr;
+
+  > :first-child {
+    grid-column: span 2;
+  }
+}
+
 .btn {
   background-color: var(--clr-border-light);
 
   padding-block: 0.5em;
-  padding-inline: 1em;
+  padding-inline: 0.5em;
 
   display: flex;
   justify-content: center;
@@ -17,4 +26,7 @@
   position: absolute;
   right: 0;
   top: 0;
+}
+
+.share-btn {
 }

@@ -20,6 +20,7 @@ function _createMeme(id, url) {
         color: 'white',
         pos: {},
         align: 'center',
+        rotation: 0,
         isChangedManuly: false,
         isDraged: false,
       },
@@ -53,6 +54,7 @@ function _createLine() {
     color: 'white',
     pos: {},
     align: 'center',
+    rotation: 0,
     isChangedManuly: false,
     isDraged: false,
   })
@@ -98,6 +100,12 @@ function switchLine(idx = null) {
     gMeme.selectedLineIdx++
     if (gMeme.selectedLineIdx >= gMeme.lines.length) gMeme.selectedLineIdx = 0
   } else gMeme.selectedLineIdx = idx
+}
+//not used yet
+function rotateLine() {
+  const lineIdx = gMeme.selectedLineIdx
+  gMeme.lines[lineIdx].rotation += 90
+  if (gMeme.lines[lineIdx].rotation >= 360) gMeme.lines[lineIdx].rotation = 0 // reset
 }
 
 function setLeftText() {

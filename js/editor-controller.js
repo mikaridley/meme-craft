@@ -70,7 +70,8 @@ function drawText(memeline, idx, position, isForDownload) {
 
   const textMetrics = gCtx.measureText(memeline.txt)
   const textWidth = textMetrics.width
-  const textHeight = memeline.size
+  // const textHeight = memeline.size
+  const textHeight = scaledSize
   const xStart = x - textWidth / 2
   const xEnd = x + textWidth / 2
 
@@ -102,8 +103,10 @@ function drawFrame(memeline, x, y) {
   const textHeight = scaledSize
 
   const padding = 10
+
   const rectX = x - textWidth / 2 - padding
   const rectY = y - padding / 2
+
   const rectWidth = textWidth + padding * 2
   const rectHeight = textHeight + padding
 
@@ -211,19 +214,6 @@ function onDeleteLine() {
   renderMeme()
 }
 
-function onImgReady() {
-  renderMeme(true)
-  document.querySelector('.done-btn').classList.add('hidden')
-  document.querySelector('.download-btn').classList.remove('hidden')
-}
-
-function onDownloadImg(elLink) {
-  const imgContent = gElCanvas.toDataURL('image/jpeg')
-  elLink.href = imgContent
-  document.querySelector('.done-btn').classList.remove('hidden')
-  document.querySelector('.download-btn').classList.add('hidden')
-}
-
 function onCanvaClick(ev) {
   const pos = { x: ev.offsetX, y: ev.offsetY }
   const line = whichTextClicked(pos)
@@ -231,22 +221,6 @@ function onCanvaClick(ev) {
   else isTextClicked = true
   switchLine(line)
   renderMeme()
-}
-
-function onSaveMeme() {
-  const savedMemes = getSavedMemes()
-  if (savedMemes.length >= 8) {
-    onOpenModal('Not enough space')
-    return
-  }
-  const dataURL = gElCanvas.toDataURL()
-  // if (dataURL.length > 100) {
-  //   console.log('dataURL:', dataURL)
-  //   onOpenModal("Can't save uploaded images")
-  //   return
-  // }
-  saveMeme(dataURL)
-  onOpenModal('Meme Saved')
 }
 
 function onOpenModal(txt) {
@@ -323,6 +297,75 @@ function getEvPos(ev) {
     }
   }
   return pos
+}
+
+function onImgReady() {
+  renderMeme(true)
+  document.querySelector('.done-btn').classList.add('hidden')
+  document.querySelector('.download-btn').classList.remove('hidden')
+  document.querySelector('.share-btn').classList.remove('hidden')
+}
+
+function onDownloadImg(elLink) {
+  const imgContent = gElCanvas.toDataURL('image/jpeg')
+  elLink.href = imgContent
+  document.querySelector('.done-btn').classList.remove('hidden')
+  document.querySelector('.download-btn').classList.add('hidden')
+  document.querySelector('.share-btn').classList.add('hidden')
+}
+
+function onSaveMeme() {
+  const savedMemes = getSavedMemes()
+  if (savedMemes.length >= 8) {
+    onOpenModal('Not enough space')
+    return
+  }
+  const dataURL = gElCanvas.toDataURL()
+  // if (dataURL.length > 100) {
+  //   console.log('dataURL:', dataURL)
+  //   onOpenModal("Can't save uploaded images")
+  //   return
+  // }
+  saveMeme(dataURL)
+  onOpenModal('Meme Saved')
+}
+
+function onShareImg(ev) {
+  document.querySelector('.done-btn').classList.remove('hidden')
+  document.querySelector('.download-btn').classList.add('hidden')
+  document.querySelector('.share-btn').classList.add('hidden')
+
+  ev.preventDefault()
+  const canvasData = gElCanvas.toDataURL('image/jpeg')
+
+  // After a succesful upload, allow the user to share on Facebook
+  function onSuccess(uploadedImgUrl) {
+    const encodedUploadedImgUrl = encodeURIComponent(uploadedImgUrl)
+    console.log('encodedUploadedImgUrl:', encodedUploadedImgUrl)
+    window.open(
+      `https://www.facebook.com/sharer/sharer.php?u=${encodedUploadedImgUrl}&t=${encodedUploadedImgUrl}`
+    )
+  }
+  uploadImg(canvasData, onSuccess)
+}
+
+async function uploadImg(imgData, onSuccess) {
+  const CLOUD_NAME = 'webify'
+  const UPLOAD_URL = `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`
+  const formData = new FormData()
+  formData.append('file', imgData)
+  formData.append('upload_preset', 'webify')
+  try {
+    const res = await fetch(UPLOAD_URL, {
+      method: 'POST',
+      body: formData,
+    })
+    const data = await res.json()
+    console.log('Cloudinary response:', data)
+    onSuccess(data.secure_url)
+  } catch (err) {
+    console.log(err)
+  }
 }
 
 //other
