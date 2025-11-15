@@ -24,11 +24,12 @@
     </header>
 
     <main class="main-layout">
-      <section class="gallery-input-container hidden">
+      <section class="gallery-search-container hidden">
         <input
           class="gallery-input"
           type="search"
           oninput="onFilterImgs(this.value)"
+          onblur="onSaveSearch(this.value)"
           list="keywords"
           name="meme-keywords"
           placeholder="Type or select..."
@@ -41,6 +42,8 @@
           <option value="game"></option>
           <option value="movie"></option>
         </datalist>
+
+        <div class="search-words"></div>
       </section>
 
       <section class="gallery"></section>

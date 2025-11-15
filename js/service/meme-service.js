@@ -5,7 +5,7 @@ let gImgs = getImgsFromDB()
 
 let gSavedMemes = loadFromStorage(MEME_KEY) || []
 let gMeme = {}
-let gKeywordSearchCountMap = { funny: 12, cat: 16, baby: 2 }
+let gKeywordSearchCountMap = { funny: 12, cat: 16, baby: 2, dog: 6, happy: 4 }
 
 //create things
 function _createMeme(id, url) {
@@ -69,10 +69,8 @@ function setPositionToLine(idx, xStart, x, y, textWidth, textHeight) {
 }
 
 function setMeme(id, url, state) {
-  if (state === 'create' || 'upload') gMeme = _createMeme(id, url)
-  else if (state === 'edit') {
-    gMeme = _editMeme(id, url)
-  }
+  if (state === 'create' || state === 'upload') gMeme = _createMeme(id, url)
+  else if (state === 'edit') gMeme = _editMeme(id, url)
 }
 
 function changeColor(color) {
@@ -145,6 +143,7 @@ function setIsChangedManuly(state) {
 
 function _editMeme(id, url) {
   const meme = getMemeById(id)
+  console.log('meme.lines:', meme.lines)
   return {
     selectedImgId: id,
     selectedLineIdx: meme.selectedLineIdx,
@@ -154,6 +153,7 @@ function _editMeme(id, url) {
 }
 
 function setTextDrag(lineIndex, isDrag) {
+  if (lineIndex === -1) return
   gMeme.lines[lineIndex].isDraged = isDrag
 }
 
@@ -190,6 +190,13 @@ function getIdxMemeById(id) {
   return index
 }
 
+function getKeywordsSearch() {
+  const sortedKeywords = Object.entries(gKeywordSearchCountMap).sort(
+    (keyword1, keyword2) => (keyword1[1] - keyword2[1]) * -1
+  )
+  return sortedKeywords
+}
+
 //remove things
 function removeMeme(id) {
   const index = getIdxMemeById(id)
@@ -202,4 +209,10 @@ function saveMeme(data) {
   const memeToSave = { ...gMeme, data }
   gSavedMemes.push(memeToSave)
   saveToStorage(MEME_KEY, gSavedMemes)
+}
+
+//fulter
+function saveSearch(value) {
+  if (gKeywordSearchCountMap[value]) gKeywordSearchCountMap[value]++
+  else gKeywordSearchCountMap[value] = 1
 }

@@ -8,7 +8,7 @@ function onInit() {
 
 function onRenderGallery() {
   document.querySelector('.gallery').classList.remove('hidden')
-  document.querySelector('.gallery-input-container').classList.remove('hidden')
+  document.querySelector('.gallery-search-container').classList.remove('hidden')
   document.querySelector('.editor').classList.add('hidden')
   document.querySelector('.saved-memes').classList.add('hidden')
   document.querySelector('.about').classList.add('hidden')
@@ -32,6 +32,7 @@ function renderGallery() {
   })
   strHtml += imgs.join('')
   elGallery.innerHTML = strHtml
+  renderKeyWords()
 }
 
 function toggleMenu() {
@@ -65,7 +66,6 @@ function renderImg(img) {
 }
 
 function onFilterImgs(value) {
-  filteredImgs(value)
   const imgs = getImgs()
   filteredImgs = imgs.filter(img =>
     img.keywords.some(keyword =>
@@ -73,4 +73,30 @@ function onFilterImgs(value) {
     )
   )
   renderGallery()
+}
+
+function onSaveSearch(value) {
+  saveSearch(value)
+  renderGallery()
+}
+
+function renderKeyWords(amount = 5) {
+  const keywords = getKeywordsSearch()
+  const elSearchWords = document.querySelector('.search-words')
+  let strHtml = []
+  for (let i = 0; i < amount; i++) {
+    if (!keywords[i]) continue
+    strHtml.push(`<h3 class="word-${i}">${keywords[i][0]}</h3>`)
+  }
+  shuffleArray(strHtml)
+  elSearchWords.innerHTML = strHtml.join(' ')
+
+  const baseFont = 1
+  const fontSizeAdd = 0.2
+  for (let i = 0; i < amount; i++) {
+    if (!keywords[i]) continue
+    let elWord = document.querySelector(`.word-${i}`)
+    console.log('elWord.style.fontSize:', elWord.style.fontSize)
+    elWord.style.fontSize = `${baseFont + fontSizeAdd * keywords[i][1]}rem`
+  }
 }

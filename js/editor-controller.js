@@ -127,7 +127,7 @@ function onRenderEditor(id, url, state) {
   document.querySelector('.gallery').classList.add('hidden')
   document.querySelector('.saved-memes').classList.add('hidden')
   document.querySelector('.about').classList.add('remove')
-  document.querySelector('.gallery-input-container').classList.add('hidden')
+  document.querySelector('.gallery-search-container').classList.add('hidden')
 
   setMeme(id, url, state)
   renderMeme()

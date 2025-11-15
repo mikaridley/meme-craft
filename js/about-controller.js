@@ -5,5 +5,5 @@ function onRenderAbout() {
   document.querySelector('.gallery').classList.add('hidden')
   document.querySelector('.editor').classList.add('hidden')
   document.querySelector('.saved-memes').classList.add('hidden')
-  document.querySelector('.gallery-input-container').classList.add('hidden')
+  document.querySelector('.gallery-search-container').classList.add('hidden')
 }
