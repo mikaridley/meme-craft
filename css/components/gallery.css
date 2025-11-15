@@ -1,5 +1,9 @@
 .gallery-layout {
   background-color: var(--clr-primary-light);
+
+  border-radius: 1.5rem;
+  margin-bottom: 3rem;
+
   display: grid;
 }
 
@@ -27,7 +31,7 @@
 .search-words {
   background-color: var(--clr-primary-dark);
 
-  width: 94%;
+  width: 1fr;
   padding: 1rem;
   margin-inline: 3rem;
   border-bottom-left-radius: 1.3rem;
@@ -40,26 +44,29 @@
   justify-content: center;
   align-items: center;
   gap: 1rem;
-}
-.search-words::after {
-  content: 'top search result:';
 
-  background-color: var(--clr-primary-dark);
-  font-size: 1.4rem;
-  padding-block: 0.6rem;
-  padding-inline: 1rem;
-  border-top-left-radius: 1.3rem;
-  border-top-right-radius: 1.3rem;
+  &::after {
+    content: 'top search result:';
 
-  text-transform: uppercase;
+    background-color: var(--clr-primary-dark);
+    font-size: 1.4rem;
+    padding-block: 0.6rem;
+    padding-inline: 1rem;
+    border-top-left-radius: 1.3rem;
+    border-top-right-radius: 1.3rem;
 
-  position: absolute;
-  top: 0;
-  left: 0;
-  translate: 0 -100%;
+    text-transform: uppercase;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    translate: 0 -100%;
+  }
 }
 
 .gallery {
+  background-color: var(--clr-primary-light);
+
   width: 80vw;
   max-width: 1600px;
   padding: 3rem;

@@ -8,17 +8,19 @@
 @import url('basics/helpers.css');
 
 /* COMPONENTS */
-@import url('components/main-layout.css');
-@import url('components/main-header.css');
-@import url('components/editor.css');
+@import url('components/main.css');
+
 @import url('components/gallery.css');
+@import url('components/saved-memes.css');
+@import url('components/about.css');
+
+@import url('components/editor.css');
 @import url('components/canvas-settings.css');
 @import url('components/icons.css');
+
 @import url('components/btns.css');
 @import url('components/modal-meme-saved.css');
-@import url('components/about.css');
 @import url('components/black-screen.css');
-@import url('components/no-meme-container.css');
 @import url('components/hidden.css');
 
 /* MQ */

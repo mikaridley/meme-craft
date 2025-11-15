@@ -21,3 +21,9 @@
     }
   }
 }
+
+.about-logo {
+  width: 40vw;
+  margin-inline: auto;
+  margin-block: 2rem;
+}

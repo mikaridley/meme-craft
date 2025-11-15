@@ -51,6 +51,29 @@
 
 /* mobile only */
 @media (max-width: 850px) {
+  .search-words {
+    display: none;
+  }
+
+  .gallery-search-container {
+    grid-template-rows: 1fr;
+    justify-items: center;
+    align-items: center;
+    padding: 1rem;
+    gap: 0rem;
+    margin-bottom: 0;
+  }
+
+  .gallery-input {
+    padding: 0.5rem;
+
+    margin-inline: 0.5rem;
+  }
+
+  .gallery {
+    padding: 0.5rem;
+  }
+
   .editor {
     justify-content: center;
     align-items: center;
@@ -86,13 +109,18 @@
 }
 
 @media (max-width: 480px) {
+  .gallery-layout {
+    justify-items: center;
+  }
+
   .gallery {
     padding: 0.3rem;
     border-radius: 0px;
   }
 
-  canvas {
-    min-width: 350px;
+  .gallery-input {
+    padding: 0.5rem;
+    margin-inline: 0.5rem;
   }
 
   .save-btns-container {
