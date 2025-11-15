@@ -7,3 +7,4 @@ function onRenderAbout() {
   document.querySelector('.saved-memes').classList.add('hidden')
   document.querySelector('.gallery-search-container').classList.add('hidden')
 }
+//
