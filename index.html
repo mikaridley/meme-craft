@@ -12,8 +12,10 @@
 
       <nav class="main-nav">
         <ul class="nav-list flex">
-          <li class="btn i18n-en-btn" onclick="loadLanguage('en')">English</li>
-          <li class="btn i18n-he-btn" onclick="loadLanguage('he')">עברית</li>
+          <li class="btn i18n-en-btn hidden" onclick="onLoadLanguage('en')">
+            English
+          </li>
+          <li class="btn i18n-he-btn" onclick="onLoadLanguage('he')">עברית</li>
           <li
             onclick="onRenderGallery()"
             class="clean-list btn"
@@ -60,7 +62,9 @@
             onclick="onFlexibleMeme()"
             class="btn flexible-btn"
             data-i18n="flexible"
-          ></button>
+          >
+            I'm Flexible
+          </button>
 
           <div class="search-words"></div>
         </section>

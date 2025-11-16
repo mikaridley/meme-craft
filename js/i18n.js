@@ -3,7 +3,7 @@
 let currentLang = 'en'
 const translations = {}
 
-async function loadLanguage(lang) {
+async function onLoadLanguage(lang) {
   renderI18nBtns()
   const res = await fetch(`./i18n/${lang}.json`)
   translations[lang] = await res.json()

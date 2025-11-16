@@ -18,7 +18,7 @@ function renderSavedMemes() {
   let strHtml = ''
   if (!savedMemes) return
   if (savedMemes.length === 0) {
-    strHtml = ` <div class="no-meme-container">You currently haven’t saved any memes.</div>`
+    strHtml = ` <div data-i18n="no-meme-msg" class="no-meme-container" >You currently haven’t saved any memes.</div>`
   } else {
     savedMemes = savedMemes.map(meme => {
       return ` <div class="saved-meme-container relative">
@@ -29,6 +29,7 @@ function renderSavedMemes() {
   }
   strHtml += savedMemes.join('')
   elSavedMemes.innerHTML = strHtml
+  translatePage()
 }
 
 //on things

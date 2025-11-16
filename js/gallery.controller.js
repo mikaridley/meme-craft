@@ -38,6 +38,7 @@ function renderGallery() {
   elGallery.innerHTML = strHtml
   renderKeyWords()
   renderDatalist()
+  translatePage()
 }
 
 function renderKeyWords(amount = 5) {
