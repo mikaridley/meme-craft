@@ -4,7 +4,7 @@ let filteredImgs = getImgs()
 
 function onInit() {
   onRenderGallery()
-  loadLanguage('en')
+  onLoadLanguage('en')
 }
 
 function onRenderGallery() {

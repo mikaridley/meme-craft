@@ -31,8 +31,10 @@ function renderCanvas(ratio) {
   gCtx = gElCanvas.getContext('2d')
 
   //4:3 ratio
-  gElCanvas.width = window.innerWidth * 0.4
-  gElCanvas.height = gElCanvas.width * ratio
+  // gElCanvas.width = window.innerWidth * 0.4
+  // gElCanvas.height = gElCanvas.width * ratio
+  gElCanvas.width = 500
+  gElCanvas.height = 500
 }
 
 function renderLineSetting() {

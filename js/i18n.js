@@ -16,7 +16,8 @@ function translatePage() {
 
   elements.forEach(el => {
     const key = el.dataset.i18n
-    el.textContent = translations[currentLang][key]
+    const translation = translations[currentLang]?.[key]
+    if (translation) el.textContent = translation
   })
 }
 
