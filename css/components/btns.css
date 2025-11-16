@@ -63,10 +63,13 @@
 }
 
 .up-down-btn {
+  display: grid;
+  grid-template-rows: repeat(2, 50%);
   > :first-child,
   :nth-child(2) {
+    padding: 0;
     > img {
-      width: 25px;
+      width: 20%;
     }
   }
 }

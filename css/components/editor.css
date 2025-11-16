@@ -1,13 +1,13 @@
 .editor {
-  width: 80vw;
-  max-width: 1400px;
-  max-height: 750px;
-  padding: 3rem;
+  min-height: 100%;
+  padding-block: 3rem;
+  padding-inline: 1rem;
   border-radius: 1.5rem;
 
   display: grid;
-  justify-content: center;
-  gap: 2rem;
+  grid-template-columns: 1fr auto;
+  justify-items: center;
+  gap: 1rem;
 
   background-color: var(--clr-primary-light);
 

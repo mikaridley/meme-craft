@@ -1,5 +1,5 @@
 .canvas-settings {
-  width: 100%;
+  width: max-content;
   max-height: 600px;
   max-width: 400px;
 
@@ -21,6 +21,7 @@
   padding: 0.7rem;
   width: 100%;
   background-color: var(--clr-primary-dark);
+  color: var(--clr-text-base);
   border: none;
   cursor: pointer;
 }

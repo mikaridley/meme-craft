@@ -42,6 +42,7 @@ h3 {
 
 canvas {
   max-height: 600px;
+  min-height: 500px;
   border-top: 0.3rem solid var(--clr-border-dark);
   border-left: 0.3rem solid var(--clr-border-dark);
   border-bottom: 0.3rem solid var(--clr-border-light);

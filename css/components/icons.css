@@ -1,7 +1,6 @@
 .icons-container {
+  width: max-content;
   display: grid;
-  grid-template-columns: repeat(3, 6rem) 5rem;
-  grid-template-rows: repeat(3, 6rem) 5rem;
   gap: 0.5rem;
   width: 100%;
   max-width: 400px;
@@ -20,7 +19,7 @@
 
 .icon {
   width: auto;
-  max-width: 50px;
+  max-width: 60%;
   cursor: pointer;
 
   :nth-child(4) & {
@@ -30,8 +29,6 @@
 
 .icon-cell {
   background-color: var(--clr-primary-dark);
-
-  padding: 0.5rem;
 
   display: flex;
   justify-content: center;
