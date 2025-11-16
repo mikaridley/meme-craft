@@ -338,16 +338,19 @@ function onImgReady() {
   renderMeme(true)
   document.querySelector('.done-btn').classList.add('hidden')
   document.querySelector('.download-btn').classList.remove('hidden')
-  document.querySelector('.share-btn').classList.remove('hidden')
+  document.querySelector('.facebook-btn').classList.remove('hidden')
+  document.querySelector('.other-btn').classList.remove('hidden')
   switchLine(-1)
 }
 
 function onDownloadImg(elLink) {
   const imgContent = gElCanvas.toDataURL('image/jpeg')
   elLink.href = imgContent
+
   document.querySelector('.done-btn').classList.remove('hidden')
   document.querySelector('.download-btn').classList.add('hidden')
-  document.querySelector('.share-btn').classList.add('hidden')
+  document.querySelector('.facebook-btn').classList.add('hidden')
+  document.querySelector('.other-btn').classList.add('hidden')
 }
 
 function onSaveMeme() {
@@ -366,16 +369,7 @@ function onSaveMeme() {
   onOpenModal('Meme Saved')
 }
 
-function onShareMeme() {
-  document.querySelector('.facebook-btn').classList.remove('hidden')
-  document.querySelector('.other-btn').classList.remove('hidden')
-}
-
 function onShareOnFacebook(ev) {
-  document.querySelector('.done-btn').classList.remove('hidden')
-  document.querySelector('.download-btn').classList.add('hidden')
-  document.querySelector('.share-btn').classList.add('hidden')
-
   ev.preventDefault()
   const canvasData = gElCanvas.toDataURL('image/jpeg')
 
@@ -388,9 +382,7 @@ function onShareOnFacebook(ev) {
     )
   }
   uploadImg(canvasData, onSuccess)
-
-  document.querySelector('.facebook-btn').classList.add('hidden')
-  document.querySelector('.other-btn').classList.add('hidden')
+  renderDoneBtn()
 }
 
 async function onOtherShare() {
@@ -412,8 +404,7 @@ async function onOtherShare() {
     }
   })
 
-  document.querySelector('.facebook-btn').classList.add('hidden')
-  document.querySelector('.other-btn').classList.add('hidden')
+  renderDoneBtn()
 }
 
 async function uploadImg(imgData, onSuccess) {
@@ -449,12 +440,14 @@ function whichTextClicked(pos) {
     )
   })
 
-  if (line !== -1) {
-    document.querySelector('.done-btn').classList.remove('hidden')
-    document.querySelector('.download-btn').classList.add('hidden')
-    document.querySelector('.share-btn').classList.add('hidden')
-    document.querySelector('.facebook-btn').classList.add('hidden')
-    document.querySelector('.other-btn').classList.add('hidden')
-  }
+  if (line !== -1) renderDoneBtn()
+
   return line
+}
+
+function renderDoneBtn() {
+  document.querySelector('.done-btn').classList.remove('hidden')
+  document.querySelector('.download-btn').classList.add('hidden')
+  document.querySelector('.facebook-btn').classList.add('hidden')
+  document.querySelector('.other-btn').classList.add('hidden')
 }

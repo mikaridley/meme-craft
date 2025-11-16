@@ -227,29 +227,17 @@
 
           <a
             href="#"
-            class="btn download-btn hidden"
+            class=""
             onclick="onDownloadImg(this,event)"
             download="my-meme.jpg"
             data-i18n="download-btn"
-            >Download</a
           >
-
-          <button
-            onclick="onShareMeme()"
-            class="btn share-btn hidden"
-            type="submit"
-            data-i18n="share-btn"
-          >
-            Share
-          </button>
-
-          <button
-            class="btn other-btn hidden"
-            onclick="onOtherShare()"
-            data-i18n="other-btn"
-          >
-            Other
-          </button>
+            <img
+              class="hidden download-btn"
+              src="icons/Download.png"
+              alt="Icon"
+              title="download img"
+          /></a>
 
           <form
             class="facebook-btn hidden"
@@ -257,14 +245,22 @@
             enctype="multipart/form-data"
             onsubmit="onShareOnFacebook(event)"
           >
-            <button
-              class="facebook-btn btn"
-              type="submit"
-              data-i18n="facebook-btn"
-            >
-              Facebook
+            <button class="facebook-btn" type="submit" data-i18n="facebook-btn">
+              <img
+                src="icons/Facebook.png"
+                alt="Icon"
+                title="share on facebook"
+              />
             </button>
           </form>
+
+          <button
+            class="other-btn hidden"
+            onclick="onOtherShare()"
+            data-i18n="other-btn"
+          >
+            <img src="icons/Share.png" alt="Icon" title="share" />
+          </button>
 
           <a
             href="#"

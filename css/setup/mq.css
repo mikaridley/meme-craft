@@ -61,7 +61,8 @@
   .editor {
     grid-template-columns: 1fr;
 
-    padding: 0.5rem;
+    padding-inline: 0.5rem;
+    padding-bottom: 2rem;
     border-radius: 0;
 
     > :nth-child(2) {
