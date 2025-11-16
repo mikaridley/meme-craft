@@ -55,6 +55,10 @@
     padding: 0.5rem;
   }
 
+  .flexible-btn {
+    margin-right: 0;
+  }
+
   .gallery {
     padding: 0.5rem;
   }
