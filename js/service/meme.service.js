@@ -40,7 +40,7 @@ function _createLine() {
   return {
     txt: 'Insert Text',
     size: 50,
-    color: 'white',
+    color: '#ffffff',
     pos: {},
     align: 'center',
     rotation: 0,
@@ -50,6 +50,7 @@ function _createLine() {
 }
 
 //set things
+
 function setLineText(value) {
   const lineIdx = gMeme.selectedLineIdx
   gMeme.lines[lineIdx].txt = value
@@ -81,7 +82,6 @@ function increaseFont() {
 
 function addLine() {
   gMeme.lines.push(_createLine())
-  gMeme.selectedLineIdx = 1
 }
 
 function switchLine(idx = null) {
@@ -90,7 +90,7 @@ function switchLine(idx = null) {
     if (gMeme.selectedLineIdx >= gMeme.lines.length) gMeme.selectedLineIdx = 0
   } else gMeme.selectedLineIdx = idx
 }
-//not used yet
+
 function rotateLine() {
   const lineIdx = gMeme.selectedLineIdx
   gMeme.lines[lineIdx].rotation += 90
@@ -196,6 +196,10 @@ function getKeywordsSearch() {
     (keyword1, keyword2) => (keyword1[1] - keyword2[1]) * -1
   )
   return sortedKeywords
+}
+
+function getLineIndex() {
+  return gMeme.selectedLineIdx
 }
 
 //remove things

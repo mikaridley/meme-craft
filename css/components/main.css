@@ -1,14 +1,6 @@
-.main-layout {
-  display: grid;
-  justify-content: center;
-  align-items: center;
-  margin-top: 2rem;
-}
-
 .main-header {
   padding-inline: 1rem;
   padding-block-end: 5rem;
-
   background-image: url('header/Background Grass.png');
 }
 

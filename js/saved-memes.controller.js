@@ -6,15 +6,18 @@ function onRenderSavedMemes() {
   document.querySelector('.gallery').classList.add('hidden')
   document.querySelector('.about').classList.add('hidden')
   document.querySelector('.gallery-search-container').classList.add('hidden')
+
+  if (document.body.classList.contains('menu-open')) toggleMenu()
+
   renderSavedMemes()
 }
 
 function renderSavedMemes() {
   const elSavedMemes = document.querySelector('.saved-memes')
-  let savedMemes = loadFromStorage(MEME_KEY)
+  let savedMemes = loadFromStorage(MEME_KEY) || []
   let strHtml = ''
   if (!savedMemes) return
-  if (savedMemes.length === 0 || !savedMemes) {
+  if (savedMemes.length === 0) {
     strHtml = ` <div class="no-meme-container">You currently haven’t saved any memes.</div>`
   } else {
     savedMemes = savedMemes.map(meme => {

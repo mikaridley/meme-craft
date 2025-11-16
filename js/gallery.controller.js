@@ -13,6 +13,9 @@ function onRenderGallery() {
   document.querySelector('.editor').classList.add('hidden')
   document.querySelector('.saved-memes').classList.add('hidden')
   document.querySelector('.about').classList.add('hidden')
+
+  if (document.body.classList.contains('menu-open')) toggleMenu()
+
   renderGallery()
 }
 

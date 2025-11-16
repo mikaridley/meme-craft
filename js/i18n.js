@@ -30,4 +30,6 @@ function renderI18nBtns() {
     elEn.classList.add('hidden')
     elHe.classList.remove('hidden')
   }
+
+  if (document.body.classList.contains('menu-open')) toggleMenu()
 }

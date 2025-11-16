@@ -3,7 +3,6 @@ let gElCanvas
 let gCtx
 const BASE_CANVAS_HEIGHT = 500
 let gStartPos = { line: -1, pos: null }
-let isTextClicked = true
 let isTextDraged = false
 
 //render things
@@ -23,6 +22,7 @@ function renderMeme(isForDownload = false) {
     renderCanvas(ratio)
     gCtx.drawImage(elImg, 0, 0, gElCanvas.width, gElCanvas.height)
     renderAllTextLines(isForDownload)
+    renderLineSetting()
   }
 }
 
@@ -33,6 +33,20 @@ function renderCanvas(ratio) {
   //4:3 ratio
   gElCanvas.width = window.innerWidth * 0.4
   gElCanvas.height = gElCanvas.width * ratio
+}
+
+function renderLineSetting() {
+  const meme = getMeme()
+  const memeLine = meme.lines[meme.selectedLineIdx]
+  if (!memeLine) return
+
+  const elColor = document.querySelector('.color')
+  elColor.value = memeLine.color
+
+  const elText = document.querySelector('.text-input')
+  elText.value = memeLine.txt
+
+  renderMeme()
 }
 
 function onResize() {
@@ -146,100 +160,100 @@ function onRenderEditor(id, url, state) {
   document.querySelector('.gallery-search-container').classList.add('hidden')
 
   setMeme(id, url, state)
+  if (document.body.classList.contains('menu-open')) toggleMenu()
   renderMeme()
 }
 
 function onSetLineTxt(value) {
-  if (!isTextClicked) return
+  if (getLineIndex() === -1) return
   setLineText(value)
   renderMeme()
 }
 
 function onChangeColor(color) {
-  if (!isTextClicked) return
+  if (getLineIndex() === -1) return
   changeColor(color)
   renderMeme()
 }
 
 function onDecreaseFont() {
-  if (!isTextClicked) return
+  if (getLineIndex() === -1) return
   decreaseFont()
   renderMeme()
 }
 
 function onIncreaseFont() {
-  if (!isTextClicked) return
+  if (getLineIndex() === -1) return
   increaseFont()
   renderMeme()
 }
 
 function onAddLine() {
-  isTextClicked = true
   addLine()
+  switchLine()
   renderMeme()
 }
 
 function onSwitchLine() {
-  if (!isTextClicked) return
+  if (getLineIndex() === -1) return
   switchLine()
   renderMeme()
 }
 
 function onRotateLine() {
-  if (!isTextClicked) return
+  if (getLineIndex() === -1) return
   rotateLine()
   renderMeme()
 }
 
 function onSetLeftText() {
-  if (!isTextClicked) return
+  if (getLineIndex() === -1) return
   setLeftText()
   renderMeme()
 }
 
 function onSetCenterText() {
-  if (!isTextClicked) return
+  if (getLineIndex() === -1) return
   setCenterText()
   renderMeme()
 }
 
 function onSetRightText() {
-  if (!isTextClicked) return
+  if (getLineIndex() === -1) return
   setRightText()
   renderMeme()
 }
 
 function onMoveTextUp() {
-  if (!isTextClicked) return
+  if (getLineIndex() === -1) return
   moveTextUp()
   renderMeme()
 }
 
 function onMoveTextDown() {
-  if (!isTextClicked) return
+  if (getLineIndex() === -1) return
   moveTextDown()
   renderMeme()
 }
 
 function onMoveTextDown() {
-  if (!isTextClicked) return
+  if (getLineIndex() === -1) return
   moveTextDown()
   renderMeme()
 }
 
 function onDeleteLine() {
-  if (!isTextClicked) return
+  if (getLineIndex() === -1) return
   deleteLine()
   renderMeme()
 }
 
 function onCanvaClick(ev) {
   const pos = { x: ev.offsetX, y: ev.offsetY }
-  const line = whichTextClicked(pos)
-  console.log('line:', line)
-  if (line === -1) isTextClicked = false
-  else isTextClicked = true
-  switchLine(line)
+  const lineIndex = whichTextClicked(pos)
+  // if (lineIndex === -1) setLineIndex(-1)
+  // else setLineIndex(lineIndex)
+  switchLine(lineIndex)
   renderMeme()
 }
 
@@ -255,6 +269,7 @@ function onOpenModal(txt) {
 function onDown(ev) {
   const pos = getEvPos(ev)
   const line = whichTextClicked(pos)
+
   if (line === -1) return
 
   switchLine(line)
