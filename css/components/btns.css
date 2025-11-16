@@ -14,8 +14,7 @@
 
   > :first-child {
     grid-row: 1;
-    grid-column: 1 / span 3;
-    width: 100%;
+    grid-column: 1 / span 4;
   }
 
   > :nth-child(5) {
@@ -59,12 +58,10 @@
   align-self: center;
 }
 
-.done-btn {
-}
-
 .download-btn,
 .facebook-btn,
-.other-btn {
+.other-btn,
+.save-btn {
   background-color: var(--clr-primary-light);
   width: 4rem;
   height: 100%;
@@ -73,10 +70,6 @@
   justify-content: center;
   align-items: center;
   cursor: pointer;
-}
-
-.save-btn {
-  max-width: auto;
 }
 
 .up-down-btn {

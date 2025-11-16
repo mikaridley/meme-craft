@@ -186,8 +186,8 @@ function getMemeById(id) {
   return meme
 }
 
-function getIdxMemeById(id) {
-  const index = gSavedMemes.findIndex(meme => meme.selectedImgId === id)
+function getIdxMemeByData(data) {
+  const index = gSavedMemes.findIndex(meme => meme.data === data)
   return index
 }
 
@@ -203,8 +203,8 @@ function getLineIndex() {
 }
 
 //remove things
-function removeMeme(id) {
-  const index = getIdxMemeById(id)
+function removeMeme(data) {
+  const index = getIdxMemeByData(data)
   if (index !== -1) gSavedMemes.splice(index, 1)
   saveToStorage(MEME_KEY, gSavedMemes)
 }

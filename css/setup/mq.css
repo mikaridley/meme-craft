@@ -148,7 +148,8 @@
 
   .download-btn,
   .facebook-btn,
-  .other-btn {
+  .other-btn,
+  .save-btn {
     width: 3rem;
   }
 }

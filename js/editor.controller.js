@@ -334,11 +334,12 @@ function getEvPos(ev) {
 
 function onImgReady() {
   renderMeme(true)
+  switchLine(-1)
   document.querySelector('.done-btn').classList.add('hidden')
   document.querySelector('.download-btn').classList.remove('hidden')
   document.querySelector('.facebook-btn').classList.remove('hidden')
   document.querySelector('.other-btn').classList.remove('hidden')
-  switchLine(-1)
+  document.querySelector('.save-btn').classList.remove('hidden')
 }
 
 function onDownloadImg(elLink) {
@@ -447,4 +448,5 @@ function renderDoneBtn() {
   document.querySelector('.download-btn').classList.add('hidden')
   document.querySelector('.facebook-btn').classList.add('hidden')
   document.querySelector('.other-btn').classList.add('hidden')
+  document.querySelector('.save-btn').classList.add('hidden')
 }
