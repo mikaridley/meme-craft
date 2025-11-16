@@ -151,6 +151,12 @@
   .btn {
     font-size: 1rem;
   }
+
+  .download-btn,
+  .facebook-btn,
+  .other-btn {
+    width: 3rem;
+  }
 }
 
 @media (max-width: 380px) {
