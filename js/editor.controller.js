@@ -37,6 +37,9 @@ function renderCanvas(ratio) {
   if (window.innerWidth <= 1100) {
     gElCanvas.width = window.innerWidth * 0.9
     gElCanvas.height = gElCanvas.width * ratio
+  } else if (window.innerWidth >= 1700) {
+    gElCanvas.width = 700
+    gElCanvas.height = gElCanvas.width * ratio
   }
 }
 
@@ -346,10 +349,7 @@ function onDownloadImg(elLink) {
   const imgContent = gElCanvas.toDataURL('image/jpeg')
   elLink.href = imgContent
 
-  document.querySelector('.done-btn').classList.remove('hidden')
-  document.querySelector('.download-btn').classList.add('hidden')
-  document.querySelector('.facebook-btn').classList.add('hidden')
-  document.querySelector('.other-btn').classList.add('hidden')
+  renderDoneBtn()
 }
 
 function onSaveMeme() {
@@ -366,6 +366,7 @@ function onSaveMeme() {
   // }
   saveMeme(dataURL)
   onOpenModal('Meme Saved')
+  renderDoneBtn()
 }
 
 function onShareOnFacebook(ev) {
